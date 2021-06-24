@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitInstance {
     private static Retrofit retrofit = null;
 
-    private static String BASE_URL = "http://hp-api.herokuapp.com/api/";
+    private static String BASE_URL = "https://hp-api.herokuapp.com/api/";
 
     public static HogwartsService getService(){
         if(retrofit == null) {

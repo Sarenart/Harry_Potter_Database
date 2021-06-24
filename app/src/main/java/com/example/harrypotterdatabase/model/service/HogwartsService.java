@@ -2,6 +2,8 @@ package com.example.harrypotterdatabase.model.service;
 
 import com.example.harrypotterdatabase.model.CharacterInfo;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -14,13 +16,13 @@ public interface HogwartsService {
     public static final String SLYTHERIN = "slytherin";
 
     @GET("characters")
-    Call<CharacterInfo> getCharacters();
+    Call<List<CharacterInfo>> getCharacters();
 
     @GET("characters/students")
-    Call<CharacterInfo> getStudentCharacters();
-
+    Call<List<CharacterInfo>> getStudentCharacters();
+    
     @GET("characters/staff")
-    Call<CharacterInfo> getStaffCharacters();
+    Call<List<CharacterInfo>> getStaffCharacters();
 
     @GET("characters/house/{house}")
     Call<CharacterInfo> getCharactersByHouse(@Path("house") String house);
