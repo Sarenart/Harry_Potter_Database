@@ -7,4 +7,8 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="gryffindorRed">#c71a23</color>
+    <color name="hufflepuffYellow">#d6ab0d</color>
+    <color name="ravenclawBlue">#308ad9</color>
+    <color name="slytherinGreen">#2f7542</color>
 </resources>

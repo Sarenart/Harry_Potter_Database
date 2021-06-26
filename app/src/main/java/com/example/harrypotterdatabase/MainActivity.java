@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModelProvider;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.harrypotterdatabase.fragments.CharactersFragment;
+import com.example.harrypotterdatabase.fragments.HousesFragment;
 import com.example.harrypotterdatabase.model.CharacterInfo;
 import com.example.harrypotterdatabase.model.service.HogwartsService;
 import com.example.harrypotterdatabase.model.service.RetrofitInstance;
@@ -33,6 +35,12 @@ public class MainActivity extends AppCompatActivity {
                 .create(MainActivityViewModel.class);
 
         characterArrayList = mainActivityViewModel.getCharacters();
+
+        if(savedInstanceState == null){
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.buttonPanelContainerView, HousesFragment.class, null)
+                    .commit();
+        }
     }
 
 }

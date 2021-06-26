@@ -8,6 +8,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.example.harrypotterdatabase.model.CharacterInfo;
+import com.example.harrypotterdatabase.model.Repository;
 import com.example.harrypotterdatabase.model.service.HogwartsService;
 import com.example.harrypotterdatabase.model.service.RetrofitInstance;
 
@@ -20,49 +21,16 @@ import retrofit2.Response;
 
 public class MainActivityViewModel extends AndroidViewModel {
 
-    private HogwartsService hogwartsService;
+    private final Repository repository;
 
-    ArrayList <CharacterInfo> characterInfoArrayList;
+    private ArrayList <CharacterInfo> characterInfoArrayList;
 
     public MainActivityViewModel(@NonNull Application application) {
         super(application);
 
-        hogwartsService = RetrofitInstance.getService();
-
+        repository = Repository.getInstance();
     }
 
-    public ArrayList<CharacterInfo> getCharacters(){
-
-
-        Call<List<CharacterInfo>> call = hogwartsService.getCharacters();
-
-        call.enqueue(new Callback<List<CharacterInfo>>() {
-            @Override
-            public void onResponse(Call<List<CharacterInfo>> call, Response<List<CharacterInfo>> response) {
-                List<CharacterInfo> characters = response.body();
-
-                if(characters != null){
-
-                    characterInfoArrayList = (ArrayList<CharacterInfo>) characters;
-
-                    for (CharacterInfo characterInfo: characterInfoArrayList) {
-
-                        Log.d("CHARACTER", characterInfo.getName() + ", " + characterInfo.getActor());
-
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<CharacterInfo>> call, Throwable t) {
-
-                Log.d("CHARACTER", "configure http " + t.getMessage());
-
-            }
-
-        });
-
-        return characterInfoArrayList;
-    }
+    public ArrayList<CharacterInfo> getCharacters(){ return this.repository.getCharacters(); }
 
 }
