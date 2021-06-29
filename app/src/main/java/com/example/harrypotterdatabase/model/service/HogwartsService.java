@@ -1,6 +1,6 @@
 package com.example.harrypotterdatabase.model.service;
 
-import com.example.harrypotterdatabase.model.CharacterInfo;
+import com.example.harrypotterdatabase.model.models.CharacterInfo;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ public interface HogwartsService {
     Call<List<CharacterInfo>> getStaffCharacters();
 
     @GET("characters/house/{house}")
-    Call<CharacterInfo> getCharactersByHouse(@Path("house") String house);
+    Call<List<CharacterInfo>> getCharactersByHouse(@Path("house") String house);
     //TODO добавить параметр в вызов (Проверить работоспособность позже)
 
 

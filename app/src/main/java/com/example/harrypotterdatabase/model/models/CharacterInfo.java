@@ -1,11 +1,13 @@
-package com.example.harrypotterdatabase.model;
+package com.example.harrypotterdatabase.model.models;
 
 //import javax.annotation.Generated;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 //@Generated("jsonschema2pojo")
-public class CharacterInfo {
+public class CharacterInfo implements Parcelable {
 
     @SerializedName("name")
     @Expose
@@ -55,6 +57,44 @@ public class CharacterInfo {
     @SerializedName("image")
     @Expose
     private String image;
+    public final static Creator<CharacterInfo> CREATOR = new Creator<CharacterInfo>() {
+
+
+        @SuppressWarnings({
+                "unchecked"
+        })
+        public CharacterInfo createFromParcel(android.os.Parcel in) {
+            return new CharacterInfo(in);
+        }
+
+        public CharacterInfo[] newArray(int size) {
+            return (new CharacterInfo[size]);
+        }
+
+    }
+            ;
+
+    protected CharacterInfo(android.os.Parcel in) {
+        this.name = ((String) in.readValue((String.class.getClassLoader())));
+        this.species = ((String) in.readValue((String.class.getClassLoader())));
+        this.gender = ((String) in.readValue((String.class.getClassLoader())));
+        this.house = ((String) in.readValue((String.class.getClassLoader())));
+        this.dateOfBirth = ((String) in.readValue((String.class.getClassLoader())));
+        this.yearOfBirth = ((String) in.readValue((String.class.getClassLoader())));
+        this.ancestry = ((String) in.readValue((String.class.getClassLoader())));
+        this.eyeColour = ((String) in.readValue((String.class.getClassLoader())));
+        this.hairColour = ((String) in.readValue((String.class.getClassLoader())));
+        this.wand = ((Wand) in.readValue((Wand.class.getClassLoader())));
+        this.patronus = ((String) in.readValue((String.class.getClassLoader())));
+        this.hogwartsStudent = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
+        this.hogwartsStaff = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
+        this.actor = ((String) in.readValue((String.class.getClassLoader())));
+        this.alive = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
+        this.image = ((String) in.readValue((String.class.getClassLoader())));
+    }
+
+    public CharacterInfo() {
+    }
 
     public String getName() {
         return name;
@@ -184,45 +224,29 @@ public class CharacterInfo {
         this.image = image;
     }
 
-
-    //@Generated("jsonschema2pojo")
-    public class Wand {
-
-        @SerializedName("wood")
-        @Expose
-        private String wood;
-        @SerializedName("core")
-        @Expose
-        private String core;
-        @SerializedName("length")
-        @Expose
-        private String length;
-
-        public String getWood() {
-            return wood;
-        }
-
-        public void setWood(String wood) {
-            this.wood = wood;
-        }
-
-        public String getCore() {
-            return core;
-        }
-
-        public void setCore(String core) {
-            this.core = core;
-        }
-
-        public String getLength() {
-            return length;
-        }
-
-        public void setLength(String length) {
-            this.length = length;
-        }
-
+    public void writeToParcel(android.os.Parcel dest, int flags) {
+        dest.writeValue(name);
+        dest.writeValue(species);
+        dest.writeValue(gender);
+        dest.writeValue(house);
+        dest.writeValue(dateOfBirth);
+        dest.writeValue(yearOfBirth);
+        dest.writeValue(ancestry);
+        dest.writeValue(eyeColour);
+        dest.writeValue(hairColour);
+        dest.writeValue(wand);
+        dest.writeValue(patronus);
+        dest.writeValue(hogwartsStudent);
+        dest.writeValue(hogwartsStaff);
+        dest.writeValue(actor);
+        dest.writeValue(alive);
+        dest.writeValue(image);
     }
+
+    public int describeContents() {
+        return 0;
+    }
+
 
 
 }

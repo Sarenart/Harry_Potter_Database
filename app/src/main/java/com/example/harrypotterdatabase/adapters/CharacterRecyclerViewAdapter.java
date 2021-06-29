@@ -9,8 +9,8 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.harrypotterdatabase.R;
-import com.example.harrypotterdatabase.databinding.CharacterItemViewBinding;
-import com.example.harrypotterdatabase.model.CharacterInfo;
+import com.example.harrypotterdatabase.databinding.CharacterListItemViewBinding;
+import com.example.harrypotterdatabase.model.models.CharacterInfo;
 
 import java.util.ArrayList;
 
@@ -22,35 +22,35 @@ public class CharacterRecyclerViewAdapter extends RecyclerView.Adapter<Character
     @NonNull
     @Override
     public CharacterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        CharacterItemViewBinding characterItemViewBinding = DataBindingUtil.inflate(
-                LayoutInflater.from(parent.getContext()), R.layout.fragment_characters,
+        CharacterListItemViewBinding characterListItemViewBinding = DataBindingUtil.inflate(
+                LayoutInflater.from(parent.getContext()), R.layout.character_list_item_view,
                 parent, false
         );
-        return new CharacterViewHolder(characterItemViewBinding);
+        return new CharacterViewHolder(characterListItemViewBinding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull  CharacterRecyclerViewAdapter.CharacterViewHolder holder, int position) {
         CharacterInfo characterInfo = characterInfoArrayList.get(position);
-        holder.characterItemViewBinding.setCharacter(characterInfo);
+        holder.characterListItemViewBinding.setCharacter(characterInfo);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return characterInfoArrayList.size();
     }
 
 
     class CharacterViewHolder extends RecyclerView.ViewHolder{
 
-        CharacterItemViewBinding characterItemViewBinding;
+        CharacterListItemViewBinding characterListItemViewBinding;
 
-        public CharacterViewHolder(@NonNull CharacterItemViewBinding characterItemViewBinding) {
-            super(characterItemViewBinding.getRoot());
+        public CharacterViewHolder(@NonNull CharacterListItemViewBinding characterListItemViewBinding) {
+            super(characterListItemViewBinding.getRoot());
 
-            this.characterItemViewBinding = characterItemViewBinding;
+            this.characterListItemViewBinding = characterListItemViewBinding;
 
-            characterItemViewBinding.getRoot().setOnClickListener(new View.OnClickListener() {
+            characterListItemViewBinding.getRoot().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
@@ -70,5 +70,10 @@ public class CharacterRecyclerViewAdapter extends RecyclerView.Adapter<Character
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
+    }
+
+    public void setCharacterInfoArrayList(ArrayList<CharacterInfo> characterInfoArrayList) {
+        this.characterInfoArrayList = characterInfoArrayList;
+        notifyDataSetChanged();
     }
 }

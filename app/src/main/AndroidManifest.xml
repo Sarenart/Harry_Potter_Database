@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HarryPotterDatabase"
         android:usesCleartextTraffic="true">
-        <activity android:name=".CharacterInfoActivity"></activity>
+        <activity android:name=".WandInfoActivity"></activity>
+        <activity android:name=".CharacterListActivity" />
+        <activity android:name=".CharacterInfoActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

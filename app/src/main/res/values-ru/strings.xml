@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Harry Potter Database</string>
     <string name="gryffindor">Гриффиндор</string>
     <string name="hufflepuff">Пуффендуй</string>
     <string name="ravenclaw">Когтевран</string>
     <string name="slytherin">Слизерин</string>
     <string name="greeting">Выберите Факультет</string>
+    <string name="app_name">Harry Potter Characters</string>
+    <string name="hello_blank_fragment">Привет, пустой фрагмент</string>
 </resources>
