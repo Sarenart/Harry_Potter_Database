@@ -11,7 +11,9 @@ import android.util.Log;
 import com.example.harrypotterdatabase.fragments.CharacterInfoFragment;
 import com.example.harrypotterdatabase.fragments.CharacterListFragment;
 import com.example.harrypotterdatabase.fragments.HousesFragment;
+import com.example.harrypotterdatabase.fragments.WandInfoFragment;
 import com.example.harrypotterdatabase.model.models.CharacterInfo;
+import com.example.harrypotterdatabase.model.models.Wand;
 import com.example.harrypotterdatabase.model.service.HogwartsService;
 import com.example.harrypotterdatabase.viewmodel.SharedViewModel;
 
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         sharedViewModel.getChosenHouse().observe(this, new Observer<String>() {
             @Override
             public void onChanged(String s) {
+                sharedViewModel.setListLoaded(false);
                 fragmentManager.beginTransaction()
                         .setReorderingAllowed(true)
                         .replace(R.id.buttonPanelContainerView, CharacterListFragment.class, null)
@@ -57,12 +60,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        sharedViewModel.getChosenWand().observe(this, new Observer<Wand>() {
+            @Override
+            public void onChanged(Wand wand) {
+                fragmentManager.beginTransaction()
+                        .setReorderingAllowed(true)
+                        .replace(R.id.buttonPanelContainerView, WandInfoFragment.class, null)
+                        .addToBackStack("CharactersByHouse")
+                        .commit();
+            }
+        });
 
         if(savedInstanceState == null){
             fragmentManager.beginTransaction()
                     .setReorderingAllowed(true)
                     .add(R.id.buttonPanelContainerView, HousesFragment.class, null)
-                    .addToBackStack("Houses")
+                    //.addToBackStack("Houses")
                     .commit();
         }
     }

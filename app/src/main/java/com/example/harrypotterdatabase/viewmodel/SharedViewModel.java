@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.harrypotterdatabase.model.models.CharacterInfo;
 import com.example.harrypotterdatabase.model.Repository;
+import com.example.harrypotterdatabase.model.models.Wand;
 import com.example.harrypotterdatabase.model.service.HogwartsService;
 
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ public class SharedViewModel extends AndroidViewModel {
 
     private final Repository repository;
 
+    private boolean isListLoaded;
 
     private LiveData<List<CharacterInfo>> charactersByHouse;
 
@@ -25,10 +27,13 @@ public class SharedViewModel extends AndroidViewModel {
 
     private MutableLiveData<String> chosenHouse = new MutableLiveData<>();
 
+    private MutableLiveData<Wand> chosenWand = new MutableLiveData<>();
+
     public SharedViewModel(@NonNull Application application) {
         super(application);
 
         repository = Repository.getInstance();
+        isListLoaded = false;
     }
 
     public MutableLiveData<CharacterInfo> getChosenCharacter() {
@@ -40,6 +45,15 @@ public class SharedViewModel extends AndroidViewModel {
         return chosenHouse;
     }
 
+    public MutableLiveData<Wand> getChosenWand() { return chosenWand;  }
+
+    public boolean isListLoaded() {
+        return isListLoaded;
+    }
+
+    public void setListLoaded(boolean listLoaded) {
+        isListLoaded = listLoaded;
+    }
 
     public LiveData<List<CharacterInfo>> getAllCharacters(){
 

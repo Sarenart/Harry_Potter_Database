@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -38,15 +39,18 @@ public class CharacterInfoFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view,@Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         sharedViewModel = new ViewModelProvider(requireActivity())
                 .get(SharedViewModel.class);
 
         fragmentCharacterInfoBinding.setCharacter(sharedViewModel.getChosenCharacter().getValue());
+        fragmentCharacterInfoBinding.setClickHandlers(new CharacterInfoClickHandlers(requireContext()));
+
+        String check = sharedViewModel.getChosenCharacter().getValue().getAncestry();
         Log.d("State", "OnViewCreated");
-        Log.d("Wand", sharedViewModel.getChosenCharacter().getValue().getWand().getCore());
+        Log.d("Ancestry", check);
     }
 
     @Override
@@ -64,7 +68,8 @@ public class CharacterInfoFragment extends Fragment {
         public CharacterInfoClickHandlers(Context context){ this.context = context; }
 
         public void onShowWandButtonClicked(View view){
-            sharedViewModel.getChosenHouse().setValue(HogwartsService.GRYFFINDOR);
+
+            sharedViewModel.getChosenWand().setValue(sharedViewModel.getChosenCharacter().getValue().getWand());
         }
     }
 }

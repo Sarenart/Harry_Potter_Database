@@ -9,30 +9,142 @@
             name="character"
             type="com.example.harrypotterdatabase.model.models.CharacterInfo" />
 
+        <variable
+            name="clickHandlers"
+            type="com.example.harrypotterdatabase.fragments.CharacterInfoFragment.CharacterInfoClickHandlers" />
+
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".fragments.CharacterInfoFragment"
-        android:padding="8dp">
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_margin="8dp"
-            android:padding="8dp"
-            app:cardCornerRadius="8dp">
 
-            <TextView
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:text="@{character.name}" />
+                android:layout_height="match_parent">
 
-        </androidx.cardview.widget.CardView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:context=".fragments.CharacterInfoFragment"
+                    android:orientation="vertical"
+                    android:padding="12dp">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="8dp"
+                        android:textAlignment="center"
+                        android:text="@{character.name}" />
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:url="@{character.image}"
+                        android:layout_marginBottom="8dp"
+                        android:layout_gravity="center"/>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+
+                        android:layout_marginBottom="8dp"
+                        android:text='@{@string/characterSpecies.concat(character.species.equals("")? @string/notStated: character.species)}'/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+
+                        android:layout_marginBottom="8dp"
+                        android:text='@{@string/characterGender.concat(character.gender.equals("")? @string/notStated: character.gender)}'/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+
+                        android:layout_marginBottom="8dp"
+                        android:text='@{@string/characterHouse.concat(character.house.equals("")? @string/notStated: character.house)}'/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+
+                        android:layout_marginBottom="8dp"
+                        android:text='@{@string/status.concat(character.alive? character.gender.equals("male")? @string/alive: @string/aliveWoman: character.gender.equals("male")?  @string/deceased : @string/deceasedWoman)}'/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+
+                        android:layout_marginBottom="8dp"
+                        android:text='@{@string/occupation.concat(character.hogwartsStaff ? @string/hogwartsStuff : character.hogwartsStudent? @string/hogwartsStudent : @string/notStated)}'/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+
+                        android:layout_marginBottom="8dp"
+                        android:text='@{@string/characterDateOfBirth.concat(character.dateOfBirth.equals("") ? @string/notStated: character.dateOfBirth)}'/>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+
+                        android:layout_marginBottom="8dp"
+                        android:text='@{@string/characterAncestry.concat(character.ancestry.equals("")? @string/notStated: character.ancestry)}'/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+
+                        android:layout_marginBottom="8dp"
+                        android:text='@{@string/characterEyeColour.concat(character.eyeColour.equals("")? @string/notStated: character.eyeColour)}' />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+
+                        android:layout_marginBottom="8dp"
+                        android:text='@{@string/characterHairColour.concat(character.hairColour.equals("")? @string/notStated: character.hairColour)}'/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="8dp"
+
+                        android:text='@{@string/characterPatronus.concat(character.patronus.equals("")? @string/notStated: character.patronus)}'/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+
+                        android:layout_marginBottom="8dp"
+                        android:text="@{@string/characterActor.concat(character.actor)}"/>
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/showWand"
+                        android:onClick="@{clickHandlers::onShowWandButtonClicked}"
+                        android:textSize="16sp"/>
+
+                </LinearLayout>
+
+            </ScrollView>
 
 </layout>

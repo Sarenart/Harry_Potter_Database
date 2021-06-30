@@ -4,8 +4,39 @@
     <string name="hufflepuff">Hufflepuff</string>
     <string name="ravenclaw">Ravenclaw</string>
     <string name="slytherin">Slytherin</string>
-
     <string name="greeting">Choose the House</string>
+    <string name="characterName">Name: </string>
+
+    <string name="characterSpecies">Species: </string>
+    <string name="characterGender">Gender: </string>
+    <string name="characterHouse">House: </string>
+    <string name="characterDateOfBirth">Date of Birth: </string>
+    <string name="characterYearOfBirth">Year of Birth: </string>
+    <string name="characterAncestry">Ancestry: </string>
+    <string name="characterEyeColour">EyeColor: </string>
+    <string name="characterHairColour">HairColor: </string>
+    <string name="characterPatronus">Patronus: </string>
+    <string name="characterActor">Actor: </string>
+
+    <string name="wandWood">Wood: </string>
+    <string name="wandCore">Core: </string>
+    <string name="wandLength">Name: </string>
+
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="notStated">NotStated</string>
+    <string name="wandWoodOwner">The wand of </string>
+    <string name="showWand">Show wand info</string>
+
+    <string name="status">Status: </string>
+    <string name="alive">Alive</string>
+    <string name="deceased">Deceased</string>
+    <string name="aliveWoman">Alive</string>
+    <string name="deceasedWoman">Deceased</string>
+
+    <string name="occupation">Occupation: </string>
+    <string name="hogwartsStuff">Hogwarts stuff</string>
+    <string name="hogwartsStudent">Hogwarts student</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

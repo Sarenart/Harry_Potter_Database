@@ -1,13 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragments.WandInfoFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="8dp">
 
-    <TextView
+    <data>
+        <variable
+            name="name"
+            type="String" />
+
+        <variable
+            name="wand"
+            type="com.example.harrypotterdatabase.model.models.Wand" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="8dp"
+        android:layout_margin="8dp">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".fragments.WandInfoFragment"
+            android:padding="8dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{@string/wandWoodOwner.concat(name)}"
+                android:layout_marginBottom="8dp"
+                android:textSize="20sp"
+                android:layout_gravity="center"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:textSize="16sp"
+                android:text='@{@string/wandWood.concat(wand.wood.equals("")? @string/notStated: wand.wood)}'/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginBottom="8dp"
+                android:text='@{@string/wandCore.concat(wand.core.equals("")? @string/notStated: wand.core)}' />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text='@{@string/wandLength.concat(wand.length.equals("")? @string/notStated: wand.length)}' />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

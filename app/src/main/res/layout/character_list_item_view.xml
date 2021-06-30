@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -24,19 +23,77 @@
             android:padding="4dp"
             android:orientation="vertical">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="@{@string/characterName.concat(character.name)}"/>
+
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_width="100dp"
+                android:layout_height="200dp"
+
+                app:url="@{character.image}"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop"/>
+
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{character.name}"/>
+                android:text='@{@string/characterSpecies.concat(character.species.equals("")? @string/notStated: character.species)}'/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{character.house}"/>
+                android:text='@{@string/characterGender.concat(character.gender.equals("")? @string/notStated: character.gender)}'/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text='@{@string/characterHouse.concat(character.house.equals("")? @string/notStated: character.house)}'/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text='@{@string/status.concat(character.alive? character.gender.equals("male")? @string/alive: @string/aliveWoman: character.gender.equals("male")?  @string/deceased : @string/deceasedWoman)}'/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text='@{@string/occupation.concat(character.hogwartsStaff ? @string/hogwartsStuff : character.hogwartsStudent? @string/hogwartsStudent : @string/notStated)}'/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text='@{@string/characterDateOfBirth.concat(character.dateOfBirth.equals("") ? @string/notStated: character.dateOfBirth)}'/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text='@{@string/characterAncestry.concat(character.ancestry.equals("")? @string/notStated: character.ancestry)}'/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text='@{@string/characterEyeColour.concat(character.eyeColour.equals("")? @string/notStated: character.eyeColour)}'/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text='@{@string/characterHairColour.concat(character.hairColour.equals("")? @string/notStated: character.hairColour)}'/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text='@{@string/characterPatronus.concat(character.patronus.equals("")? @string/notStated: character.patronus)}'/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{@string/characterActor.concat(character.actor)}"/>
 
 
         </LinearLayout>
