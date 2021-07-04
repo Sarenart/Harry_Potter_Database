@@ -65,6 +65,7 @@ public class SharedViewModel extends AndroidViewModel {
     public LiveData<List<CharacterInfo>> getCharactersByHouse(String house){
 
         charactersByHouse = repository.getCharactersByHouseFromApi(house);
+       // charactersByHouse = repository.getCharactersByHouseFromDatabase(house);
         return charactersByHouse;
 
     }

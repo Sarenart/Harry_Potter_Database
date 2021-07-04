@@ -30,7 +30,10 @@ public class Repository {
     private final HogwartsDatabase hogwartsDatabase;
 
     private ArrayList<CharacterInfo> characterInfoArrayList = new ArrayList<>();
-    private MutableLiveData<List<CharacterInfo>> characterInfos = new MutableLiveData<>();
+
+    private LiveData<List<CharacterInfo>> characterInfos;
+
+    private MutableLiveData <List<CharacterInfo>> mutableCharacterInfos = new MutableLiveData<>();
 
     public static Repository getInstance(Application application){
         if(instance == null){
@@ -57,9 +60,10 @@ public class Repository {
 
                 if(characters != null){
 
+
                     characterInfoArrayList = (ArrayList<CharacterInfo>) characters;
 
-                    characterInfos.setValue(characters);
+                    mutableCharacterInfos.setValue(characters);
 
                     for (CharacterInfo characterInfo: characterInfoArrayList) {
 
@@ -78,7 +82,7 @@ public class Repository {
 
         });
 
-        return characterInfos;
+        return mutableCharacterInfos;
     }
 
     public LiveData<List<CharacterInfo>> getCharactersByHouseFromApi(String house){
@@ -93,8 +97,7 @@ public class Repository {
                 if(characters != null){
 
                     characterInfoArrayList = (ArrayList<CharacterInfo>) characters;
-
-                    characterInfos.setValue(characters);
+                    mutableCharacterInfos.setValue(characters);
 
                     insertCharacterList(characterInfoArrayList);
 
@@ -110,7 +113,7 @@ public class Repository {
 
         });
 
-        return characterInfos;
+        return mutableCharacterInfos;
     }
 
 
@@ -132,10 +135,12 @@ public class Repository {
     }
 
 
-    public MutableLiveData<List<CharacterInfo>> getCharactersByHouseFromDatabase(){
+    public LiveData<List<CharacterInfo>> getCharactersByHouseFromDatabase(String house){
 
-        characterInfos = (MutableLiveData<List<CharacterInfo>>) hogwartsDatabase.getCharacterInfoDao().getAll();
+        //characterInfos = (MutableLiveData<List<CharacterInfo>>) hogwartsDatabase.getCharacterInfoDao().getAll();
+        characterInfos =  hogwartsDatabase.getCharacterInfoDao().getAllByHouse(house);
         return characterInfos;
+        //TODO get rid of excessive LiveData field in Repository
 
     };
 
