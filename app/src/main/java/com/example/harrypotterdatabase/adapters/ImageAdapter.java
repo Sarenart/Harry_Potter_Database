@@ -8,6 +8,10 @@ import androidx.databinding.BindingAdapter;
 
 import com.squareup.picasso.Picasso;
 
+/*
+    Adapter for downloading images into ImageViews
+ */
+
 public class ImageAdapter {
 
 

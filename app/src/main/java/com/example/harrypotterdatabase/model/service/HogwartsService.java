@@ -26,7 +26,5 @@ public interface HogwartsService {
 
     @GET("characters/house/{house}")
     Call<List<CharacterInfo>> getCharactersByHouse(@Path("house") String house);
-    //TODO добавить параметр в вызов (Проверить работоспособность позже)
-
 
 }

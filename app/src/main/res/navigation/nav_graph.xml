@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/housesFragment">
+
+    <fragment
+        android:id="@+id/housesFragment"
+        android:name="com.example.harrypotterdatabase.fragments.HousesFragment"
+        android:label="HousesFragment" >
+        <action
+            android:id="@+id/action_housesFragment_to_characterListFragment"
+            app:destination="@id/characterListFragment"
+            app:popUpTo="@id/housesFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/characterInfoFragment"
+        android:name="com.example.harrypotterdatabase.fragments.CharacterInfoFragment"
+        android:label="CharacterInfoFragment" >
+        <action
+            android:id="@+id/action_characterInfoFragment_to_wandInfoFragment"
+            app:destination="@id/wandInfoFragment"
+            app:popUpTo="@id/characterListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/characterListFragment"
+        android:name="com.example.harrypotterdatabase.fragments.CharacterListFragment"
+        android:label="CharacterListFragment" >
+        <action
+            android:id="@+id/action_characterListFragment_to_characterInfoFragment"
+            app:destination="@id/characterInfoFragment"
+            app:popUpTo="@id/characterListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/wandInfoFragment"
+        android:name="com.example.harrypotterdatabase.fragments.WandInfoFragment"
+        android:label="WandInfoFragment" />
+
+</navigation>

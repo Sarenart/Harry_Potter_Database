@@ -20,6 +20,7 @@ public class SharedViewModel extends AndroidViewModel {
     private final Repository repository;
 
     private boolean isListLoaded;
+    private int dataSource;
 
     private LiveData<List<CharacterInfo>> charactersByHouse;
 
@@ -32,7 +33,7 @@ public class SharedViewModel extends AndroidViewModel {
     public SharedViewModel(@NonNull Application application) {
         super(application);
 
-        repository = Repository.getInstance();
+        repository = Repository.getInstance(application);
         isListLoaded = false;
     }
 
@@ -63,9 +64,11 @@ public class SharedViewModel extends AndroidViewModel {
 
     public LiveData<List<CharacterInfo>> getCharactersByHouse(String house){
 
-        charactersByHouse = repository.getCharactersByHouse(house);
+        charactersByHouse = repository.getCharactersByHouseFromApi(house);
         return charactersByHouse;
 
     }
+
+
 
 }

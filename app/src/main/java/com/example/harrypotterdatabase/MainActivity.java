@@ -4,81 +4,86 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import com.example.harrypotterdatabase.fragments.CharacterInfoFragment;
+import com.example.harrypotterdatabase.fragments.CharacterInfoFragmentDirections;
 import com.example.harrypotterdatabase.fragments.CharacterListFragment;
+import com.example.harrypotterdatabase.fragments.CharacterListFragmentDirections;
 import com.example.harrypotterdatabase.fragments.HousesFragment;
+import com.example.harrypotterdatabase.fragments.HousesFragmentDirections;
 import com.example.harrypotterdatabase.fragments.WandInfoFragment;
 import com.example.harrypotterdatabase.model.models.CharacterInfo;
 import com.example.harrypotterdatabase.model.models.Wand;
-import com.example.harrypotterdatabase.model.service.HogwartsService;
 import com.example.harrypotterdatabase.viewmodel.SharedViewModel;
-
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    SharedViewModel sharedViewModel;
-    FragmentManager fragmentManager;
+    private SharedViewModel sharedViewModel;
+    private FragmentManager fragmentManager;
+    private NavController navController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*sharedViewModel = new ViewModelProvider
-                .AndroidViewModelFactory(getApplication())
-                .create(SharedViewModel.class);*/
         sharedViewModel = new ViewModelProvider(this).get(SharedViewModel.class);
+
         fragmentManager = getSupportFragmentManager();
-       // sharedViewModel.getAllCharacters();
+        NavHostFragment navHostFragment = (NavHostFragment) fragmentManager
+                .findFragmentById(R.id.navHostContainerView);
+        navController = navHostFragment.getNavController();
 
         sharedViewModel.getChosenHouse().observe(this, new Observer<String>() {
+
             @Override
             public void onChanged(String s) {
+
                 sharedViewModel.setListLoaded(false);
-                fragmentManager.beginTransaction()
-                        .setReorderingAllowed(true)
-                        .replace(R.id.buttonPanelContainerView, CharacterListFragment.class, null)
-                        .addToBackStack("CharactersByHouse")
-                        .commit();
-               // sharedViewModel.getCharactersByHouse(s);
+                NavDirections action = HousesFragmentDirections
+                        .actionHousesFragmentToCharacterListFragment();
+                navController.navigate(action);
+
+
             }
         });
         sharedViewModel.getChosenCharacter().observe(this, new Observer<CharacterInfo>() {
             @Override
             public void onChanged(CharacterInfo characterInfo) {
-                fragmentManager.beginTransaction()
-                        .setReorderingAllowed(true)
-                        .replace(R.id.buttonPanelContainerView, CharacterInfoFragment.class, null)
-                        .addToBackStack("CharactersByHouse")
-                        .commit();
+
+                NavDirections action = CharacterListFragmentDirections
+                        .actionCharacterListFragmentToCharacterInfoFragment();
+                navController.navigate(action);
+
+
             }
         });
 
         sharedViewModel.getChosenWand().observe(this, new Observer<Wand>() {
             @Override
             public void onChanged(Wand wand) {
-                fragmentManager.beginTransaction()
-                        .setReorderingAllowed(true)
-                        .replace(R.id.buttonPanelContainerView, WandInfoFragment.class, null)
-                        .addToBackStack("CharactersByHouse")
-                        .commit();
+
+                NavDirections action = CharacterInfoFragmentDirections
+                        .actionCharacterInfoFragmentToWandInfoFragment();
+                navController.navigate(action);
+
             }
         });
 
+
         if(savedInstanceState == null){
-            fragmentManager.beginTransaction()
-                    .setReorderingAllowed(true)
-                    .add(R.id.buttonPanelContainerView, HousesFragment.class, null)
-                    //.addToBackStack("Houses")
-                    .commit();
+
         }
     }
 
-
+    /*@Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        fragmentManager.popBackStack();
+    }*/
 }

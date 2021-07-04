@@ -57,6 +57,7 @@ public class CharacterListFragment extends Fragment {
                 .observe(requireActivity(), new Observer<List<CharacterInfo>>() {
                     @Override
                     public void onChanged(List<CharacterInfo> characterInfos) {
+
                         characterInfoArrayList = (ArrayList<CharacterInfo>) characterInfos;
                         characterRecyclerViewAdapter.setCharacterInfoArrayList(characterInfoArrayList);
                         characterRecyclerViewAdapter.notifyDataSetChanged();
@@ -96,6 +97,9 @@ public class CharacterListFragment extends Fragment {
         Log.d("State", "OnResume");
     }
 
+    /*
+    Set RecyclerView for the first time
+     */
     private void updateCharacterList(/*View view*/){
 
         characterRecyclerView = fragmentCharacterListBinding.characterRecyclerView;

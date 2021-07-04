@@ -34,4 +34,6 @@
     <string name="hogwartsStuff">Работник Хогвартса</string>
     <string name="aliveWoman">Жива</string>
     <string name="deceasedWoman">Мертва</string>
+    <string name="useDatabase">Использовать базу данных</string>
+    <string name="decline">Закрыть приложение</string>
 </resources>
