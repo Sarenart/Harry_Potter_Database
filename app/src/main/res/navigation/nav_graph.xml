@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/housesFragment"
         android:name="com.example.harrypotterdatabase.fragments.HousesFragment"
-        android:label="HousesFragment" >
+        android:label="@string/HousesOfHogwarts" >
         <action
             android:id="@+id/action_housesFragment_to_characterListFragment"
             app:destination="@id/characterListFragment"
@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/characterInfoFragment"
         android:name="com.example.harrypotterdatabase.fragments.CharacterInfoFragment"
-        android:label="CharacterInfoFragment" >
+        android:label="@string/CharacterInfo" >
         <action
             android:id="@+id/action_characterInfoFragment_to_wandInfoFragment"
             app:destination="@id/wandInfoFragment"
@@ -27,7 +27,7 @@
     <fragment
         android:id="@+id/characterListFragment"
         android:name="com.example.harrypotterdatabase.fragments.CharacterListFragment"
-        android:label="CharacterListFragment" >
+        android:label="@string/CharacterList" >
         <action
             android:id="@+id/action_characterListFragment_to_characterInfoFragment"
             app:destination="@id/characterInfoFragment"
@@ -37,6 +37,6 @@
     <fragment
         android:id="@+id/wandInfoFragment"
         android:name="com.example.harrypotterdatabase.fragments.WandInfoFragment"
-        android:label="WandInfoFragment" />
+        android:label="@string/WandInfo" />
 
 </navigation>

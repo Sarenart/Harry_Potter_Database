@@ -43,7 +43,9 @@ public class CharacterListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
         Log.d("State", "OnСreate");
+
     }
 
     @Override
@@ -57,11 +59,9 @@ public class CharacterListFragment extends Fragment {
                 .observe(requireActivity(), new Observer<List<CharacterInfo>>() {
                     @Override
                     public void onChanged(List<CharacterInfo> characterInfos) {
-
                         characterInfoArrayList = (ArrayList<CharacterInfo>) characterInfos;
                         characterRecyclerViewAdapter.setCharacterInfoArrayList(characterInfoArrayList);
                         characterRecyclerViewAdapter.notifyDataSetChanged();
-
                     }
                 });
         Log.d("State", "OnViewCreated");
@@ -113,7 +113,6 @@ public class CharacterListFragment extends Fragment {
         characterRecyclerViewAdapter.setOnItemClickListener(new CharacterRecyclerViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(CharacterInfo characterInfo) {
-                //TODO Make it better later
                 sharedViewModel.getChosenCharacter().setValue(characterInfo);
             }
         });

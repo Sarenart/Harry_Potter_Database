@@ -44,4 +44,9 @@
     <string name="useDatabase">Use database</string>
     <string name="decline">Close app</string>
 
+    <string name="CharacterInfo">Character Info</string>
+    <string name="CharacterList">Character from the House</string>
+    <string name="HousesOfHogwarts">Choose a House</string>
+    <string name="WandInfo">Character\'s wand info</string>
+
 </resources>

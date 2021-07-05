@@ -36,4 +36,8 @@
     <string name="deceasedWoman">Мертва</string>
     <string name="useDatabase">Использовать базу данных</string>
     <string name="decline">Закрыть приложение</string>
+    <string name="CharacterList">Представители</string>
+    <string name="CharacterInfo">Информация о персонаже</string>
+    <string name="HousesOfHogwarts">Выберите факультет</string>
+    <string name="WandInfo">Палочка персонажа</string>
 </resources>

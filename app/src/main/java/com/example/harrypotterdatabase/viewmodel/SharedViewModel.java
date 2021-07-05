@@ -7,6 +7,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.harrypotterdatabase.model.Constants;
 import com.example.harrypotterdatabase.model.models.CharacterInfo;
 import com.example.harrypotterdatabase.model.Repository;
 import com.example.harrypotterdatabase.model.models.Wand;
@@ -19,8 +20,7 @@ public class SharedViewModel extends AndroidViewModel {
 
     private final Repository repository;
 
-    private boolean isListLoaded;
-    private int dataSource;
+
 
     private LiveData<List<CharacterInfo>> charactersByHouse;
 
@@ -32,10 +32,9 @@ public class SharedViewModel extends AndroidViewModel {
 
     public SharedViewModel(@NonNull Application application) {
         super(application);
-
         repository = Repository.getInstance(application);
-        isListLoaded = false;
     }
+
 
     public MutableLiveData<CharacterInfo> getChosenCharacter() {
         return chosenCharacter;
@@ -48,13 +47,7 @@ public class SharedViewModel extends AndroidViewModel {
 
     public MutableLiveData<Wand> getChosenWand() { return chosenWand;  }
 
-    public boolean isListLoaded() {
-        return isListLoaded;
-    }
 
-    public void setListLoaded(boolean listLoaded) {
-        isListLoaded = listLoaded;
-    }
 
     public LiveData<List<CharacterInfo>> getAllCharacters(){
 
@@ -64,12 +57,12 @@ public class SharedViewModel extends AndroidViewModel {
 
     public LiveData<List<CharacterInfo>> getCharactersByHouse(String house){
 
-        charactersByHouse = repository.getCharactersByHouseFromApi(house);
-       // charactersByHouse = repository.getCharactersByHouseFromDatabase(house);
+        if(Constants.isNetworkConnected) {
+            charactersByHouse = repository.getCharactersByHouseFromApi(house);
+        }
+        else charactersByHouse = repository.getCharactersByHouseFromDatabase(house);
         return charactersByHouse;
 
     }
-
-
 
 }
