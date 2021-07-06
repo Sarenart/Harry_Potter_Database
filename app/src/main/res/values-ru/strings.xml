@@ -40,4 +40,5 @@
     <string name="CharacterInfo">Информация о персонаже</string>
     <string name="HousesOfHogwarts">Выберите факультет</string>
     <string name="WandInfo">Палочка персонажа</string>
+    <string name="CharacterImage">Фото персонажа</string>
 </resources>

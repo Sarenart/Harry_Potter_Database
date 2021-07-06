@@ -15,68 +15,75 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".fragments.HousesFragment"
-        android:padding="16dp">
+        >
 
-
-
-        <Button
-            android:id="@+id/gryffindorButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/gryffindor"
-            android:textSize="12sp"
-            android:minWidth="115dp"
-            android:layout_marginRight="8dp"
-            app:layout_constraintHorizontal_weight="1"
-            app:layout_constraintVertical_weight="1"
-            android:onClick="@{housesClickHandlers::onGryffindorClicked}"
+        <ImageView
+            android:id="@+id/gryffindorImage"
+            android:layout_width="160dp"
+            android:layout_height="220dp"
+            android:background="@drawable/gryffindor"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/ravenclawButton"
-            app:layout_constraintBottom_toTopOf="@id/hufflepuffButton"/>
+            app:layout_constraintBottom_toTopOf="@id/hufflepuffImage"
+            app:layout_constraintRight_toLeftOf="@id/ravenclawImage"
+            android:focusable="true"
+            android:clickable="true"
+            android:layout_margin="8dp"
+            android:scaleType="matrix"
+            android:contentDescription="@string/gryffindor"
+            android:onClick="@{housesClickHandlers::onGryffindorClicked}"/>
 
-        <Button
-            android:id="@+id/hufflepuffButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/hufflepuff"
-            android:textSize="12sp"
-            android:minWidth="115dp"
-            app:layout_constraintHorizontal_weight="1"
-            app:layout_constraintVertical_weight="1"
-            android:onClick="@{housesClickHandlers::onHufflepuffClicked}"
-            app:layout_constraintLeft_toLeftOf="@id/gryffindorButton"
-            app:layout_constraintTop_toBottomOf="@id/gryffindorButton"
-            app:layout_constraintRight_toRightOf="@id/gryffindorButton"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-
-        <Button
-            android:id="@+id/ravenclawButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/ravenclaw"
-            android:textSize="12sp"
-            android:minWidth="115dp"
-            app:layout_constraintHorizontal_weight="1"
-            android:onClick="@{housesClickHandlers::onRavenclawClicked}"
+        <ImageView
+            android:id="@+id/ravenclawImage"
+            android:layout_width="160dp"
+            android:layout_height="220dp"
+            android:background="@drawable/ravenclaw"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/gryffindorButton"
-            app:layout_constraintBottom_toTopOf="@id/slytherinButton"/>
+            app:layout_constraintBottom_toTopOf="@id/slytherinImage"
+            app:layout_constraintLeft_toRightOf="@id/gryffindorImage"
+            android:contentDescription="@string/ravenclaw"
+            android:focusable="true"
+            android:clickable="true"
+            android:layout_margin="8dp"
+            android:scaleType="matrix"
+            android:onClick="@{housesClickHandlers::onRavenclawClicked}"/>
 
-        <Button
-            android:id="@+id/slytherinButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/slytherin"
-            android:textSize="12sp"
-            android:minWidth="115dp"
-            app:layout_constraintHorizontal_weight="1"
-            android:onClick="@{housesClickHandlers::onSlytherinClicked}"
-            app:layout_constraintTop_toBottomOf="@id/ravenclawButton"
-            app:layout_constraintRight_toRightOf="@id/ravenclawButton"
-            app:layout_constraintLeft_toLeftOf="@id/ravenclawButton"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+        <ImageView
+            android:id="@+id/hufflepuffImage"
+            android:layout_width="160dp"
+            android:layout_height="220dp"
+            android:background="@drawable/hufflepuff"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/gryffindorImage"
+            app:layout_constraintRight_toLeftOf="@id/slytherinImage"
+            android:contentDescription="@string/hufflepuff"
+            android:focusable="true"
+            android:clickable="true"
+            android:layout_margin="8dp"
+            android:scaleType="matrix"
+            android:onClick="@{housesClickHandlers::onHufflepuffClicked}"/>
+
+        <ImageView
+            android:id="@+id/slytherinImage"
+            android:layout_width="160dp"
+            android:layout_height="220dp"
+            android:background="@drawable/slytherin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ravenclawImage"
+            app:layout_constraintLeft_toRightOf="@id/hufflepuffImage"
+            android:contentDescription="@string/slytherin"
+            android:focusable="true"
+            android:clickable="true"
+            android:layout_margin="8dp"
+            android:scaleType="matrix"
+            android:onClick="@{housesClickHandlers::onSlytherinClicked}"/>
+
+
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -48,5 +48,6 @@
     <string name="CharacterList">Character from the House</string>
     <string name="HousesOfHogwarts">Choose a House</string>
     <string name="WandInfo">Character\'s wand info</string>
+    <string name="CharacterImage">Character\'s image</string>
 
 </resources>
