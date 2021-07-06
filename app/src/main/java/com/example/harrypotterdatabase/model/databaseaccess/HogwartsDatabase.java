@@ -15,7 +15,6 @@ public abstract class HogwartsDatabase extends RoomDatabase {
     private static HogwartsDatabase instance;
 
     public abstract CharacterInfoDao getCharacterInfoDao();
-    //public abstract WandDao getWandDao();
 
     public static synchronized HogwartsDatabase getInstance(Context context){
         if(instance == null){

@@ -20,15 +20,11 @@ public class SharedViewModel extends AndroidViewModel {
 
     private final Repository repository;
 
+    private final MutableLiveData<CharacterInfo> chosenCharacter = new MutableLiveData<>();
 
+    private final MutableLiveData<String> chosenHouse = new MutableLiveData<>();
 
-    private LiveData<List<CharacterInfo>> charactersByHouse;
-
-    private MutableLiveData<CharacterInfo> chosenCharacter = new MutableLiveData<>();
-
-    private MutableLiveData<String> chosenHouse = new MutableLiveData<>();
-
-    private MutableLiveData<Wand> chosenWand = new MutableLiveData<>();
+    private final MutableLiveData<Wand> chosenWand = new MutableLiveData<>();
 
     public SharedViewModel(@NonNull Application application) {
         super(application);
@@ -47,22 +43,19 @@ public class SharedViewModel extends AndroidViewModel {
 
     public MutableLiveData<Wand> getChosenWand() { return chosenWand;  }
 
-
-
     public LiveData<List<CharacterInfo>> getAllCharacters(){
-
         return repository.getCharacters();
-
     }
 
     public LiveData<List<CharacterInfo>> getCharactersByHouse(String house){
 
+        LiveData<List<CharacterInfo>> charactersByHouse;
         if(Constants.isNetworkConnected) {
             charactersByHouse = repository.getCharactersByHouseFromApi(house);
         }
         else charactersByHouse = repository.getCharactersByHouseFromDatabase(house);
-        return charactersByHouse;
 
+        return charactersByHouse;
     }
 
 }

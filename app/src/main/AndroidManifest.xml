@@ -12,7 +12,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.HarryPotterDatabase"
+        android:theme="@style/Theme.HarryPotterDatabase.ManualTheme"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
 

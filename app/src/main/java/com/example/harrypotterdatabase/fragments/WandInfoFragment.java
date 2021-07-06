@@ -18,6 +18,10 @@ import com.example.harrypotterdatabase.model.models.CharacterInfo;
 import com.example.harrypotterdatabase.model.models.Wand;
 import com.example.harrypotterdatabase.viewmodel.SharedViewModel;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
+
 public class WandInfoFragment extends Fragment {
 
     private SharedViewModel sharedViewModel;
@@ -32,13 +36,12 @@ public class WandInfoFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_wand_info, container, false);
         fragmentWandInfoBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_wand_info, container, false);
-        View view = fragmentWandInfoBinding.getRoot();
-        return view;
+        return fragmentWandInfoBinding.getRoot();
     }
 
     @Override
@@ -49,6 +52,6 @@ public class WandInfoFragment extends Fragment {
                 .get(SharedViewModel.class);
 
         fragmentWandInfoBinding.setWand(sharedViewModel.getChosenWand().getValue());
-        fragmentWandInfoBinding.setName(sharedViewModel.getChosenCharacter().getValue().getName());
+        fragmentWandInfoBinding.setName(Objects.requireNonNull(sharedViewModel.getChosenCharacter().getValue()).getName());
     }
 }

@@ -1,7 +1,6 @@
 package com.example.harrypotterdatabase.model;
 
 import android.app.Application;
-import android.os.AsyncTask;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
@@ -11,6 +10,8 @@ import com.example.harrypotterdatabase.model.databaseaccess.HogwartsDatabase;
 import com.example.harrypotterdatabase.model.models.CharacterInfo;
 import com.example.harrypotterdatabase.model.service.HogwartsService;
 import com.example.harrypotterdatabase.model.service.RetrofitInstance;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,9 +32,7 @@ public class Repository {
 
     private ArrayList<CharacterInfo> characterInfoArrayList = new ArrayList<>();
 
-    private LiveData<List<CharacterInfo>> characterInfos;
-
-    private MutableLiveData <List<CharacterInfo>> mutableCharacterInfos = new MutableLiveData<>();
+    private final MutableLiveData <List<CharacterInfo>> mutableCharacterInfo = new MutableLiveData<>();
 
     public static Repository getInstance(Application application){
         if(instance == null){
@@ -55,7 +54,7 @@ public class Repository {
 
         call.enqueue(new Callback<List<CharacterInfo>>() {
             @Override
-            public void onResponse(Call<List<CharacterInfo>> call, Response<List<CharacterInfo>> response) {
+            public void onResponse(@NotNull Call<List<CharacterInfo>> call, @NotNull Response<List<CharacterInfo>> response) {
                 List<CharacterInfo> characters = response.body();
 
                 if(characters != null){
@@ -63,7 +62,7 @@ public class Repository {
 
                     characterInfoArrayList = (ArrayList<CharacterInfo>) characters;
 
-                    mutableCharacterInfos.setValue(characters);
+                    mutableCharacterInfo.setValue(characters);
 
                     for (CharacterInfo characterInfo: characterInfoArrayList) {
 
@@ -74,7 +73,7 @@ public class Repository {
             }
 
             @Override
-            public void onFailure(Call<List<CharacterInfo>> call, Throwable t) {
+            public void onFailure(@NotNull Call<List<CharacterInfo>> call, @NotNull Throwable t) {
 
                 Log.d("CHARACTER", "configure http: " + t.getMessage());
 
@@ -82,7 +81,7 @@ public class Repository {
 
         });
 
-        return mutableCharacterInfos;
+        return mutableCharacterInfo;
     }
 
     public LiveData<List<CharacterInfo>> getCharactersByHouseFromApi(String house){
@@ -91,13 +90,13 @@ public class Repository {
 
         call.enqueue(new Callback<List<CharacterInfo>>() {
             @Override
-            public void onResponse(Call<List<CharacterInfo>> call, Response<List<CharacterInfo>> response) {
+            public void onResponse(@NotNull Call<List<CharacterInfo>> call, @NotNull Response<List<CharacterInfo>> response) {
                 List<CharacterInfo> characters = response.body();
 
                 if(characters != null){
 
                     characterInfoArrayList = (ArrayList<CharacterInfo>) characters;
-                    mutableCharacterInfos.setValue(characters);
+                    mutableCharacterInfo.setValue(characters);
 
                     insertCharacterList(characterInfoArrayList);
 
@@ -105,7 +104,7 @@ public class Repository {
             }
 
             @Override
-            public void onFailure(Call<List<CharacterInfo>> call, Throwable t) {
+            public void onFailure(@NotNull Call<List<CharacterInfo>> call, @NotNull Throwable t) {
 
                 Log.d("CHARACTER", "configure http: " + t.getMessage());
 
@@ -113,36 +112,27 @@ public class Repository {
 
         });
 
-        return mutableCharacterInfos;
+        return mutableCharacterInfo;
     }
 
 
-    public void insertCharacterList(ArrayList<CharacterInfo> infos){
+    public void insertCharacterList(ArrayList<CharacterInfo> CharacterInfo){
 
-       service.execute(new Runnable() {
-            @Override
-            public void run() {
-                for(CharacterInfo info : infos)
+       service.execute(() -> {
+                for(CharacterInfo info : CharacterInfo)
                 {
                     if(hogwartsDatabase.getCharacterInfoDao().getCharacterByName(info.getName()) == null) {
                         hogwartsDatabase.getCharacterInfoDao().insert(info);
                     }
-                    Log.d("Executors", "Multithread successful: " + info.getName() + info.getWand().getCore() + Thread.currentThread().getName());
                 }
-            }
         });
 
     }
 
 
     public LiveData<List<CharacterInfo>> getCharactersByHouseFromDatabase(String house){
-
-        //characterInfos = (MutableLiveData<List<CharacterInfo>>) hogwartsDatabase.getCharacterInfoDao().getAll();
-        characterInfos =  hogwartsDatabase.getCharacterInfoDao().getAllByHouse(house);
-        return characterInfos;
-        //TODO get rid of excessive LiveData field in Repository
-
-    };
+        return hogwartsDatabase.getCharacterInfoDao().getAllByHouse(house);
+    }
 
 
 }

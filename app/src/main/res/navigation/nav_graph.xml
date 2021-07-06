@@ -11,6 +11,10 @@
         <action
             android:id="@+id/action_housesFragment_to_characterListFragment"
             app:destination="@id/characterListFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@android:anim/fade_out"
             app:popUpTo="@id/housesFragment" />
     </fragment>
 
@@ -21,7 +25,11 @@
         <action
             android:id="@+id/action_characterInfoFragment_to_wandInfoFragment"
             app:destination="@id/wandInfoFragment"
-            app:popUpTo="@id/characterListFragment" />
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/characterInfoFragment" />
     </fragment>
 
     <fragment
@@ -31,6 +39,10 @@
         <action
             android:id="@+id/action_characterListFragment_to_characterInfoFragment"
             app:destination="@id/characterInfoFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@android:anim/fade_out"
             app:popUpTo="@id/characterListFragment" />
     </fragment>
 

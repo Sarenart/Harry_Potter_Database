@@ -21,8 +21,11 @@ import com.example.harrypotterdatabase.model.models.CharacterInfo;
 import com.example.harrypotterdatabase.model.service.HogwartsService;
 import com.example.harrypotterdatabase.viewmodel.SharedViewModel;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class CharacterInfoFragment extends Fragment {
@@ -55,14 +58,13 @@ public class CharacterInfoFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Log.d("State", "OnCreateView");
 
         //get DataBinding instance
         fragmentCharacterInfoBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_character_info, container, false);
-        View view = fragmentCharacterInfoBinding.getRoot();
-        return view;
+        return fragmentCharacterInfoBinding.getRoot();
     }
 
     public class CharacterInfoClickHandlers{
@@ -73,8 +75,7 @@ public class CharacterInfoFragment extends Fragment {
             set character's wand to invoke transition to Wand Info Fragment from MainActivity
          */
         public void onShowWandButtonClicked(View view){
-
-            sharedViewModel.getChosenWand().setValue(sharedViewModel.getChosenCharacter().getValue().getWand());
+            sharedViewModel.getChosenWand().setValue(Objects.requireNonNull(sharedViewModel.getChosenCharacter().getValue()).getWand());
         }
     }
 }

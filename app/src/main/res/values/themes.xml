@@ -22,4 +22,16 @@
     <style name="Theme.HarryPotterDatabase.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.HarryPotterDatabase.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Theme.HarryPotterDatabase.ManualTheme">
+        <item name="colorPrimary">@color/darkPrimary</item>
+        <item name="colorPrimaryVariant">@color/darkPrimary</item>
+        <item name="colorOnPrimary">@color/darkSecondary</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/darkSecondary</item>
+        <item name="colorSecondaryVariant">@color/darkSecondary</item>
+        <item name="colorOnSecondary">@color/black</item>
+
+    </style>
+
 </resources>

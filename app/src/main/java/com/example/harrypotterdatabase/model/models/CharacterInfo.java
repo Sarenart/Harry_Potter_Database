@@ -71,9 +71,6 @@ public class CharacterInfo extends BaseObservable implements Parcelable {
     private String hairColour;
 
 
-   // @ColumnInfo(name="characterInfo_WandId")
-    //private int wandId;
-
     @SerializedName("wand")
     @Expose
     @Embedded private Wand wand;
@@ -112,9 +109,6 @@ public class CharacterInfo extends BaseObservable implements Parcelable {
     public final static Creator<CharacterInfo> CREATOR = new Creator<CharacterInfo>() {
 
 
-        @SuppressWarnings({
-                "unchecked"
-        })
         public CharacterInfo createFromParcel(android.os.Parcel in) {
             return new CharacterInfo(in);
         }

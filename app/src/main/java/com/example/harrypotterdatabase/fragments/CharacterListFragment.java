@@ -22,6 +22,8 @@ import com.example.harrypotterdatabase.databinding.FragmentCharacterListBinding;
 import com.example.harrypotterdatabase.model.models.CharacterInfo;
 import com.example.harrypotterdatabase.viewmodel.SharedViewModel;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,8 +35,6 @@ public class CharacterListFragment extends Fragment {
     private ArrayList<CharacterInfo> characterInfoArrayList;
 
     private FragmentCharacterListBinding fragmentCharacterListBinding;
-
-    private RecyclerView characterRecyclerView;
 
     private CharacterRecyclerViewAdapter characterRecyclerViewAdapter;
 
@@ -56,19 +56,16 @@ public class CharacterListFragment extends Fragment {
                 .get(SharedViewModel.class);
 
         sharedViewModel.getCharactersByHouse(sharedViewModel.getChosenHouse().getValue())
-                .observe(requireActivity(), new Observer<List<CharacterInfo>>() {
-                    @Override
-                    public void onChanged(List<CharacterInfo> characterInfos) {
-                        characterInfoArrayList = (ArrayList<CharacterInfo>) characterInfos;
+                .observe(requireActivity(), (characterInfoList) -> {
+                        characterInfoArrayList = (ArrayList<CharacterInfo>) characterInfoList;
                         characterRecyclerViewAdapter.setCharacterInfoArrayList(characterInfoArrayList);
                         characterRecyclerViewAdapter.notifyDataSetChanged();
-                    }
                 });
         Log.d("State", "OnViewCreated");
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Log.d("State", "OnCreateView");
         fragmentCharacterListBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_character_list, container, false);
@@ -97,26 +94,16 @@ public class CharacterListFragment extends Fragment {
         Log.d("State", "OnResume");
     }
 
-    /*
-    Set RecyclerView for the first time
-     */
-    private void updateCharacterList(/*View view*/){
+    private void updateCharacterList(){
 
-        characterRecyclerView = fragmentCharacterListBinding.characterRecyclerView;
+        RecyclerView characterRecyclerView = fragmentCharacterListBinding.characterRecyclerView;
         characterRecyclerView.setLayoutManager(new GridLayoutManager(requireActivity(), 2));
         characterRecyclerView.setHasFixedSize(true);
 
         characterRecyclerViewAdapter = new CharacterRecyclerViewAdapter();
-        //characterRecyclerViewAdapter.setCharacterInfoArrayList(characterInfoArrayList);
 
         characterRecyclerView.setAdapter(characterRecyclerViewAdapter);
-        characterRecyclerViewAdapter.setOnItemClickListener(new CharacterRecyclerViewAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(CharacterInfo characterInfo) {
-                sharedViewModel.getChosenCharacter().setValue(characterInfo);
-            }
-        });
-
+        characterRecyclerViewAdapter.setOnItemClickListener((characterInfo) -> sharedViewModel.getChosenCharacter().setValue(characterInfo));
 
     }
 

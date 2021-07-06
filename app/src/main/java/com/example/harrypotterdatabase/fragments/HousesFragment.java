@@ -19,6 +19,8 @@ import com.example.harrypotterdatabase.databinding.FragmentHousesBinding;
 import com.example.harrypotterdatabase.model.service.HogwartsService;
 import com.example.harrypotterdatabase.viewmodel.SharedViewModel;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.net.HttpURLConnection;
 
 
@@ -44,14 +46,13 @@ public class HousesFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_houses, container, false);
 
         fragmentHousesBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_houses, container, false);
-        View view = fragmentHousesBinding.getRoot();
-        return view;
+        return fragmentHousesBinding.getRoot();
     }
 
     public class HousesClickHandlers{

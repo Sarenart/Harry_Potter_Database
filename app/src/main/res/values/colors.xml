@@ -11,4 +11,6 @@
     <color name="hufflepuffYellow">#d6ab0d</color>
     <color name="ravenclawBlue">#308ad9</color>
     <color name="slytherinGreen">#2f7542</color>
+    <color name="darkPrimary">#101820</color>
+    <color name="darkSecondary">#F2AA4C</color>
 </resources>
