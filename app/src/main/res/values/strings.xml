@@ -49,5 +49,6 @@
     <string name="HousesOfHogwarts">Choose a House</string>
     <string name="WandInfo">Character\'s wand info</string>
     <string name="CharacterImage">Character\'s image</string>
+    <string name="NetworkIssue">Network error. Switching to internal data (data may be unupdated).</string>
 
 </resources>

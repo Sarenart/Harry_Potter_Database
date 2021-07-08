@@ -43,11 +43,12 @@ public class MainActivity extends AppCompatActivity {
 
         sharedViewModel = new ViewModelProvider(this).get(SharedViewModel.class);
 
-
-
         fragmentManager = getSupportFragmentManager();
+
         NavHostFragment navHostFragment = (NavHostFragment) fragmentManager
                 .findFragmentById(R.id.navHostContainerView);
+        
+        assert navHostFragment != null;
         navController = navHostFragment.getNavController();
 
         appBarConfiguration =
@@ -55,9 +56,8 @@ public class MainActivity extends AppCompatActivity {
         //Toolbar toolbar = findViewById(R.id.toolbar);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
-        CheckNetwork checkNetwork = new CheckNetwork(getApplicationContext());
+        CheckNetwork checkNetwork = new CheckNetwork(getApplicationContext(), fragmentManager);
         checkNetwork.registerNetworkCallback();
-
 
         sharedViewModel.getChosenHouse().observe(this, new Observer<String>() {
 
@@ -99,6 +99,8 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
+
+
 
     @Override
     public boolean onSupportNavigateUp() {
