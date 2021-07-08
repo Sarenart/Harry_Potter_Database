@@ -15,20 +15,31 @@
             type="com.example.harrypotterdatabase.model.models.Wand" />
 
     </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{@string/wandWoodOwner.concat(name)}"
-            android:layout_margin="4dp"
-            android:textSize="24sp"
-            android:layout_gravity="center"
-            android:textAlignment="center"/>
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="8dp"
+            android:layout_marginHorizontal="8dp"
+            android:elevation="4dp"
+            android:padding="8dp">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{@string/wandWoodOwner.concat(name)}"
+                android:layout_margin="4dp"
+                android:textSize="24sp"
+                android:layout_gravity="center"
+                android:textAlignment="center"/>
+
+        </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

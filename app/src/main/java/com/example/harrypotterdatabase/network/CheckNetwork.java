@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkRequest;
+import android.util.Log;
 
 import com.example.harrypotterdatabase.model.Constants;
 
@@ -27,10 +28,12 @@ Context context;
                        @Override
                        public void onAvailable(Network network) {
                            Constants.isNetworkConnected = true; // Global Static Variable
+                           Log.d("NetworkState", "Network is available");
                        }
                        @Override
                        public void onLost(Network network) {
                            Constants.isNetworkConnected = false; // Global Static Variable
+                           Log.d("NetworkState","Network is unavailable");
                        }
                    }
             );
