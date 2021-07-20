@@ -31,7 +31,6 @@ import java.util.Objects;
 public class CharacterInfoFragment extends Fragment {
 
     private SharedViewModel sharedViewModel;
-    private CharacterInfo chosenCharacter;
 
     private FragmentCharacterInfoBinding fragmentCharacterInfoBinding;
 

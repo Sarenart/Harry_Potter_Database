@@ -26,7 +26,7 @@ public class Repository {
 
     private static Repository instance;
 
-    private final ExecutorService service;
+    private ExecutorService service;
     private final HogwartsService hogwartsService;
     private final HogwartsDatabase hogwartsDatabase;
 
@@ -45,11 +45,19 @@ public class Repository {
     private Repository(Application application){
           hogwartsService = RetrofitInstance.getService();
           hogwartsDatabase = HogwartsDatabase.getInstance(application);
-          service = Executors.newSingleThreadExecutor();
+
+    }
+
+    public LiveData<List<CharacterInfo>> getCharactersList(String house){
+
+            //updateCharactersByHouseFromApi(house);
+        //else getCharactersByHouseFromDatabase(house);
+        //return mutableCharacterInfo;
+        return hogwartsDatabase.getCharacterInfoDao().getAllByHouse(house);
     }
 
 
-    public LiveData<List<CharacterInfo>> getCharactersByHouseFromApi(String house){
+    public void /*LiveData<List<CharacterInfo>>*/ updateCharactersByHouseFromApi(String house){
 
         Call<List<CharacterInfo>> call = hogwartsService.getCharactersByHouse(house);
 
@@ -61,8 +69,7 @@ public class Repository {
                 if(characters != null){
 
                     characterInfoArrayList = (ArrayList<CharacterInfo>) characters;
-                    mutableCharacterInfo.setValue(characters);
-
+                    //mutableCharacterInfo.setValue(characters);
                     insertCharacterList(characterInfoArrayList);
 
                 }
@@ -77,18 +84,20 @@ public class Repository {
 
         });
 
-        return mutableCharacterInfo;
+        //return mutableCharacterInfo;
     }
 
 
     public void insertCharacterList(ArrayList<CharacterInfo> CharacterInfo){
+
+       service = Executors.newSingleThreadExecutor();
 
        service.execute(() -> {
                 for(CharacterInfo info : CharacterInfo)
                 {
                     hogwartsDatabase.getCharacterInfoDao().insert(info);
                 }
-
+            service.shutdown();
         });
 
     }

@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(String s) {
 
+                sharedViewModel.updateCharactersByHouse(s);
                 NavDirections action = HousesFragmentDirections
                         .actionHousesFragmentToCharacterListFragment();
                 navController.navigate(action);
@@ -95,9 +96,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        if(savedInstanceState == null){
-
-        }
     }
 
 
@@ -113,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
         super.onBackPressed();
         if(getSupportFragmentManager().findFragmentById(R.id.characterListFragment)==null) {
             Log.d("List", "List was deleted");
+
         }
 
     }

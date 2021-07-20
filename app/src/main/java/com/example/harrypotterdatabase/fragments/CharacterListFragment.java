@@ -32,13 +32,9 @@ public class CharacterListFragment extends Fragment {
 
     private SharedViewModel sharedViewModel;
 
-    private ArrayList<CharacterInfo> characterInfoArrayList;
-
     private FragmentCharacterListBinding fragmentCharacterListBinding;
 
     private CharacterRecyclerViewAdapter characterRecyclerViewAdapter;
-
-    View inflatedView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,7 +53,10 @@ public class CharacterListFragment extends Fragment {
 
         sharedViewModel.getCharactersByHouse(sharedViewModel.getChosenHouse().getValue())
                 .observe(requireActivity(), (characterInfoList) -> {
+
                         characterRecyclerViewAdapter.setCharacterInfoArrayList((ArrayList<CharacterInfo>) characterInfoList);
+                        sharedViewModel.setDataInvalidated(false);
+
                 });
         Log.d("State", "OnViewCreated");
     }
@@ -77,7 +76,8 @@ public class CharacterListFragment extends Fragment {
     public void onDestroyView() {
         Log.d("State", "OnDestroy");
         super.onDestroyView();
-        //characterRecyclerViewAdapter.clearCharacterInfoArrayList();
+        sharedViewModel.getCharactersByHouse(sharedViewModel.getChosenHouse().getValue()).removeObservers(requireActivity());
+        characterRecyclerViewAdapter.clearCharacterInfoArrayList();
         //fragmentCharacterListBinding = null;
     }
 

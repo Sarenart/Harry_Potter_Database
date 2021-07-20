@@ -21,15 +21,29 @@ public class SharedViewModel extends AndroidViewModel {
 
     private final Repository repository;
 
+    //private LiveData<List<CharacterInfo>> charactersByHouse;
+
+    private boolean isDataInvalidated;
+
     private final MutableLiveData<CharacterInfo> chosenCharacter = new MutableLiveData<>();
 
     private final MutableLiveData<String> chosenHouse = new MutableLiveData<>();
 
     private final MutableLiveData<Wand> chosenWand = new MutableLiveData<>();
 
+    public boolean isDataInvalidated() {
+        return isDataInvalidated;
+    }
+
+    public void setDataInvalidated(boolean dataInvalidated) {
+        isDataInvalidated = dataInvalidated;
+    }
+
     public SharedViewModel(@NonNull Application application) {
         super(application);
         repository = Repository.getInstance(application);
+        //charactersByHouse = repository.getCharactersList();
+        //isDataInvalidated = true;
     }
 
 
@@ -47,13 +61,18 @@ public class SharedViewModel extends AndroidViewModel {
 
     public LiveData<List<CharacterInfo>> getCharactersByHouse(String house){
 
-        LiveData<List<CharacterInfo>> charactersByHouse;
+        return repository.getCharactersList(house);
+        /*
         if(GlobalVariables.isNetworkConnected) {
             charactersByHouse = repository.getCharactersByHouseFromApi(house);
         }
         else charactersByHouse = repository.getCharactersByHouseFromDatabase(house);
 
-        return charactersByHouse;
+        return charactersByHouse;*/
     }
+
+    public void updateCharactersByHouse(String house){
+        repository.updateCharactersByHouseFromApi(house);
+    };
 
 }
