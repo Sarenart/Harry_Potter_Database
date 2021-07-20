@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 
 import com.example.harrypotterdatabase.R;
 import com.example.harrypotterdatabase.databinding.FragmentHousesBinding;
+import com.example.harrypotterdatabase.model.Constants;
 import com.example.harrypotterdatabase.model.service.HogwartsService;
 import com.example.harrypotterdatabase.viewmodel.SharedViewModel;
 
@@ -61,16 +62,16 @@ public class HousesFragment extends Fragment {
         public HousesClickHandlers(Context context){ this.context = context; }
 
         public void onGryffindorClicked(View view){
-            sharedViewModel.getChosenHouse().setValue(HogwartsService.GRYFFINDOR);
+            sharedViewModel.getChosenHouse().setValue(Constants.GRYFFINDOR);
         }
         public void onHufflepuffClicked(View view){
-            sharedViewModel.getChosenHouse().setValue(HogwartsService.HUFFLEPUFF);
+            sharedViewModel.getChosenHouse().setValue(Constants.HUFFLEPUFF);
         }
         public void onRavenclawClicked(View view){
-            sharedViewModel.getChosenHouse().setValue(HogwartsService.RAVENCLAW);
+            sharedViewModel.getChosenHouse().setValue(Constants.RAVENCLAW);
         }
         public void onSlytherinClicked(View view){
-            sharedViewModel.getChosenHouse().setValue(HogwartsService.SLYTHERIN);
+            sharedViewModel.getChosenHouse().setValue(Constants.SLYTHERIN);
         }
 
     }

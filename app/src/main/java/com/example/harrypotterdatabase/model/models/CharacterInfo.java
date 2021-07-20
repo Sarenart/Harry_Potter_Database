@@ -3,6 +3,7 @@ package com.example.harrypotterdatabase.model.models;
 //import javax.annotation.Generated;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 import androidx.room.ColumnInfo;
@@ -17,15 +18,17 @@ import com.google.gson.annotations.SerializedName;
 
 //@Generated("jsonschema2pojo")
 @Entity(tableName = "characterInfo_table")
-public class CharacterInfo extends BaseObservable implements Parcelable {
+public class CharacterInfo extends BaseObservable  {
 
-    @PrimaryKey(autoGenerate = true)
-    private int id;
+    //@PrimaryKey(autoGenerate = true)
+    //private int id;
 
 
     @ColumnInfo(name="characterInfo_Name")
     @SerializedName("name")
     @Expose
+    @PrimaryKey
+    @NonNull
     private String name;
 
     @ColumnInfo(name="characterInfo_Species")
@@ -106,52 +109,14 @@ public class CharacterInfo extends BaseObservable implements Parcelable {
     private String image;
 
 
-    public final static Creator<CharacterInfo> CREATOR = new Creator<CharacterInfo>() {
-
-
-        public CharacterInfo createFromParcel(android.os.Parcel in) {
-            return new CharacterInfo(in);
-        }
-
-        public CharacterInfo[] newArray(int size) {
-            return (new CharacterInfo[size]);
-        }
-
-    }
-            ;
-
-    protected CharacterInfo(android.os.Parcel in) {
-        this.name = ((String) in.readValue((String.class.getClassLoader())));
-        this.species = ((String) in.readValue((String.class.getClassLoader())));
-        this.gender = ((String) in.readValue((String.class.getClassLoader())));
-        this.house = ((String) in.readValue((String.class.getClassLoader())));
-        this.dateOfBirth = ((String) in.readValue((String.class.getClassLoader())));
-        this.yearOfBirth = ((String) in.readValue((String.class.getClassLoader())));
-        this.ancestry = ((String) in.readValue((String.class.getClassLoader())));
-        this.eyeColour = ((String) in.readValue((String.class.getClassLoader())));
-        this.hairColour = ((String) in.readValue((String.class.getClassLoader())));
-        this.wand = ((Wand) in.readValue((Wand.class.getClassLoader())));
-        this.patronus = ((String) in.readValue((String.class.getClassLoader())));
-        this.hogwartsStudent = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
-        this.hogwartsStaff = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
-        this.actor = ((String) in.readValue((String.class.getClassLoader())));
-        this.alive = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
-        this.image = ((String) in.readValue((String.class.getClassLoader())));
-    }
-
-    public CharacterInfo() {
-    }
-
-
-
-    @Bindable
+   /* @Bindable
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
-    }
+    }*/
 
 
     @Bindable
@@ -296,29 +261,6 @@ public class CharacterInfo extends BaseObservable implements Parcelable {
 
     public void setImage(String image) {
         this.image = image;
-    }
-
-    public void writeToParcel(android.os.Parcel dest, int flags) {
-        dest.writeValue(name);
-        dest.writeValue(species);
-        dest.writeValue(gender);
-        dest.writeValue(house);
-        dest.writeValue(dateOfBirth);
-        dest.writeValue(yearOfBirth);
-        dest.writeValue(ancestry);
-        dest.writeValue(eyeColour);
-        dest.writeValue(hairColour);
-        dest.writeValue(wand);
-        dest.writeValue(patronus);
-        dest.writeValue(hogwartsStudent);
-        dest.writeValue(hogwartsStaff);
-        dest.writeValue(actor);
-        dest.writeValue(alive);
-        dest.writeValue(image);
-    }
-
-    public int describeContents() {
-        return 0;
     }
 
 

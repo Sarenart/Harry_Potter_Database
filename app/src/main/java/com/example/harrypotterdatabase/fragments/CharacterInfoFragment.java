@@ -53,14 +53,14 @@ public class CharacterInfoFragment extends Fragment {
         fragmentCharacterInfoBinding.setCharacter(sharedViewModel.getChosenCharacter().getValue());
         fragmentCharacterInfoBinding.setClickHandlers(new CharacterInfoClickHandlers(requireContext()));
 
-        Log.d("State", "OnViewCreated");
+        //Log.d("State", "OnViewCreated");
 
     }
 
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.d("State", "OnCreateView");
+       // Log.d("State", "OnCreateView");
 
         //get DataBinding instance
         fragmentCharacterInfoBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_character_info, container, false);

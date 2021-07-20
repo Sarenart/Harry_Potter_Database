@@ -73,7 +73,12 @@ public class CharacterRecyclerViewAdapter extends RecyclerView.Adapter<Character
     }
 
     public void setCharacterInfoArrayList(ArrayList<CharacterInfo> characterInfoArrayList) {
+        clearCharacterInfoArrayList();
         this.characterInfoArrayList = characterInfoArrayList;
         notifyDataSetChanged();
+    }
+
+    public void clearCharacterInfoArrayList(){
+        this.characterInfoArrayList.clear();
     }
 }

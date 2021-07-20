@@ -57,9 +57,7 @@ public class CharacterListFragment extends Fragment {
 
         sharedViewModel.getCharactersByHouse(sharedViewModel.getChosenHouse().getValue())
                 .observe(requireActivity(), (characterInfoList) -> {
-                        characterInfoArrayList = (ArrayList<CharacterInfo>) characterInfoList;
-                        characterRecyclerViewAdapter.setCharacterInfoArrayList(characterInfoArrayList);
-                        characterRecyclerViewAdapter.notifyDataSetChanged();
+                        characterRecyclerViewAdapter.setCharacterInfoArrayList((ArrayList<CharacterInfo>) characterInfoList);
                 });
         Log.d("State", "OnViewCreated");
     }
@@ -79,6 +77,7 @@ public class CharacterListFragment extends Fragment {
     public void onDestroyView() {
         Log.d("State", "OnDestroy");
         super.onDestroyView();
+        //characterRecyclerViewAdapter.clearCharacterInfoArrayList();
         //fragmentCharacterListBinding = null;
     }
 
@@ -92,6 +91,7 @@ public class CharacterListFragment extends Fragment {
     public void onResume() {
         super.onResume();
         Log.d("State", "OnResume");
+
     }
 
     private void updateCharacterList(){

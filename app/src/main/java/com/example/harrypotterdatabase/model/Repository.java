@@ -48,41 +48,6 @@ public class Repository {
           service = Executors.newSingleThreadExecutor();
     }
 
-    public LiveData<List<CharacterInfo>> getCharacters(){
-
-        Call<List<CharacterInfo>> call = hogwartsService.getCharacters();
-
-        call.enqueue(new Callback<List<CharacterInfo>>() {
-            @Override
-            public void onResponse(@NotNull Call<List<CharacterInfo>> call, @NotNull Response<List<CharacterInfo>> response) {
-                List<CharacterInfo> characters = response.body();
-
-                if(characters != null){
-
-
-                    characterInfoArrayList = (ArrayList<CharacterInfo>) characters;
-
-                    mutableCharacterInfo.setValue(characters);
-
-                    for (CharacterInfo characterInfo: characterInfoArrayList) {
-
-                        Log.d("CHARACTER", characterInfo.getName() + ", " + characterInfo.getPatronus());
-
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(@NotNull Call<List<CharacterInfo>> call, @NotNull Throwable t) {
-
-                Log.d("CHARACTER", "configure http: " + t.getMessage());
-
-            }
-
-        });
-
-        return mutableCharacterInfo;
-    }
 
     public LiveData<List<CharacterInfo>> getCharactersByHouseFromApi(String house){
 
@@ -121,10 +86,9 @@ public class Repository {
        service.execute(() -> {
                 for(CharacterInfo info : CharacterInfo)
                 {
-                    if(hogwartsDatabase.getCharacterInfoDao().getCharacterByName(info.getName()) == null) {
-                        hogwartsDatabase.getCharacterInfoDao().insert(info);
-                    }
+                    hogwartsDatabase.getCharacterInfoDao().insert(info);
                 }
+
         });
 
     }

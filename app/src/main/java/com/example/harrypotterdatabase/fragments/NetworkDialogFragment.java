@@ -13,8 +13,6 @@ import com.example.harrypotterdatabase.model.Constants;
 
 public class NetworkDialogFragment extends DialogFragment {
 
-    public static final String  TAG = "NetworkIssue";
-
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {

@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.harrypotterdatabase.fragments.NetworkDialogFragment;
 import com.example.harrypotterdatabase.model.Constants;
+import com.example.harrypotterdatabase.model.GlobalVariables;
 
 public class CheckNetwork {
 
@@ -33,20 +34,20 @@ public class CheckNetwork {
                     .registerDefaultNetworkCallback(new ConnectivityManager.NetworkCallback(){
                        @Override
                        public void onAvailable(Network network) {
-                           Constants.isNetworkConnected = true; // Global Static Variable
+                           GlobalVariables.isNetworkConnected = true; // Global Static Variable
                            Log.d("NetworkState", "Network is available");
                        }
                        @Override
                        public void onLost(Network network) {
-                           Constants.isNetworkConnected = false; // Global Static Variable
+                           GlobalVariables.isNetworkConnected = false; // Global Static Variable
                            Log.d("NetworkState","Network is unavailable");
-                           new NetworkDialogFragment().show(fragmentManager, NetworkDialogFragment.TAG);
+                           new NetworkDialogFragment().show(fragmentManager, Constants.NETWORK_TAG);
                        }
                    }
             );
-            Constants.isNetworkConnected = false;
+            GlobalVariables.isNetworkConnected = false;
         }catch (Exception e){
-            Constants.isNetworkConnected = false;
+            GlobalVariables.isNetworkConnected = false;
         }
     }
 }

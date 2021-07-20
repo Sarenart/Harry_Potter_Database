@@ -2,6 +2,7 @@ package com.example.harrypotterdatabase.model.databaseaccess;
 
 import android.content.Context;
 
+import androidx.room.AutoMigration;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
@@ -9,7 +10,11 @@ import androidx.room.RoomDatabase;
 import com.example.harrypotterdatabase.model.models.CharacterInfo;
 import com.example.harrypotterdatabase.model.models.Wand;
 
-@Database(entities = {CharacterInfo.class}, version = 1)
+@Database(
+        entities = {CharacterInfo.class},
+        version = 2
+
+)
 public abstract class HogwartsDatabase extends RoomDatabase {
 
     private static HogwartsDatabase instance;
@@ -25,3 +30,5 @@ public abstract class HogwartsDatabase extends RoomDatabase {
         return instance;
     }
 }
+
+

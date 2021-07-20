@@ -10,10 +10,6 @@ import retrofit2.http.Path;
 
 public interface HogwartsService {
 
-    public static final String GRYFFINDOR = "gryffindor";
-    public static final String RAVENCLAW = "ravenclaw";
-    public static final String HUFFLEPUFF = "hufflepuff";
-    public static final String SLYTHERIN = "slytherin";
 
     @GET("characters")
     Call<List<CharacterInfo>> getCharacters();

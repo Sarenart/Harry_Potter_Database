@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.harrypotterdatabase.model.Constants;
+import com.example.harrypotterdatabase.model.GlobalVariables;
 import com.example.harrypotterdatabase.model.models.CharacterInfo;
 import com.example.harrypotterdatabase.model.Repository;
 import com.example.harrypotterdatabase.model.models.Wand;
@@ -43,14 +44,11 @@ public class SharedViewModel extends AndroidViewModel {
 
     public MutableLiveData<Wand> getChosenWand() { return chosenWand;  }
 
-    public LiveData<List<CharacterInfo>> getAllCharacters(){
-        return repository.getCharacters();
-    }
 
     public LiveData<List<CharacterInfo>> getCharactersByHouse(String house){
 
         LiveData<List<CharacterInfo>> charactersByHouse;
-        if(Constants.isNetworkConnected) {
+        if(GlobalVariables.isNetworkConnected) {
             charactersByHouse = repository.getCharactersByHouseFromApi(house);
         }
         else charactersByHouse = repository.getCharactersByHouseFromDatabase(house);
