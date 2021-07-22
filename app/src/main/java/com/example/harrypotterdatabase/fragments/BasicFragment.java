@@ -8,10 +8,16 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.example.harrypotterdatabase.viewmodel.SharedViewModel;
 
 import org.jetbrains.annotations.NotNull;
 
 public class BasicFragment extends Fragment {
+
+    private SharedViewModel sharedViewModel;
+
     @Override
     public void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +33,8 @@ public class BasicFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        sharedViewModel = new ViewModelProvider(requireActivity())
+                .get(SharedViewModel.class);
     }
 
     @Override
@@ -58,4 +66,9 @@ public class BasicFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
     }
+
+    public SharedViewModel getSharedViewModel(){
+        return sharedViewModel;
+    }
+
 }

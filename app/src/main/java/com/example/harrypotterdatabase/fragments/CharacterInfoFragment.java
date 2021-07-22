@@ -28,9 +28,7 @@ import java.util.List;
 import java.util.Objects;
 
 
-public class CharacterInfoFragment extends Fragment {
-
-    private SharedViewModel sharedViewModel;
+public class CharacterInfoFragment extends BasicFragment {
 
     private FragmentCharacterInfoBinding fragmentCharacterInfoBinding;
 
@@ -44,24 +42,15 @@ public class CharacterInfoFragment extends Fragment {
     public void onViewCreated(@NonNull View view,@Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        //get sharedViewModel instance
-        sharedViewModel = new ViewModelProvider(requireActivity())
-                .get(SharedViewModel.class);
-
-        //set character info to View
-        fragmentCharacterInfoBinding.setCharacter(sharedViewModel.getChosenCharacter().getValue());
+        fragmentCharacterInfoBinding.setCharacter(getSharedViewModel().getChosenCharacter().getValue());
         fragmentCharacterInfoBinding.setClickHandlers(new CharacterInfoClickHandlers(requireContext()));
-
-        //Log.d("State", "OnViewCreated");
 
     }
 
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-       // Log.d("State", "OnCreateView");
 
-        //get DataBinding instance
         fragmentCharacterInfoBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_character_info, container, false);
         return fragmentCharacterInfoBinding.getRoot();
     }
@@ -70,11 +59,9 @@ public class CharacterInfoFragment extends Fragment {
         Context context;
 
         public CharacterInfoClickHandlers(Context context){ this.context = context; }
-        /*
-            set character's wand to invoke transition to Wand Info Fragment from MainActivity
-         */
+
         public void onShowWandButtonClicked(View view){
-            sharedViewModel.getChosenWand().setValue(Objects.requireNonNull(sharedViewModel.getChosenCharacter().getValue()).getWand());
+            CharacterInfoFragment.this.getSharedViewModel().getChosenWand().setValue(Objects.requireNonNull(CharacterInfoFragment.this.getSharedViewModel().getChosenCharacter().getValue()).getWand());
         }
     }
 }

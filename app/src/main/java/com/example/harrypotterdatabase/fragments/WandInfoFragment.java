@@ -22,15 +22,14 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
-public class WandInfoFragment extends Fragment {
+public class WandInfoFragment extends BasicFragment {
 
-    private SharedViewModel sharedViewModel;
-    private Wand chosenWand;
 
     private FragmentWandInfoBinding fragmentWandInfoBinding;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
 
     }
@@ -38,8 +37,7 @@ public class WandInfoFragment extends Fragment {
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_wand_info, container, false);
+
         fragmentWandInfoBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_wand_info, container, false);
         return fragmentWandInfoBinding.getRoot();
     }
@@ -48,10 +46,7 @@ public class WandInfoFragment extends Fragment {
     public void onViewCreated(@NonNull  View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        sharedViewModel = new ViewModelProvider(requireActivity())
-                .get(SharedViewModel.class);
-
-        fragmentWandInfoBinding.setWand(sharedViewModel.getChosenWand().getValue());
-        fragmentWandInfoBinding.setName(Objects.requireNonNull(sharedViewModel.getChosenCharacter().getValue()).getName());
+        fragmentWandInfoBinding.setWand(getSharedViewModel().getChosenWand().getValue());
+        fragmentWandInfoBinding.setName(Objects.requireNonNull(getSharedViewModel().getChosenCharacter().getValue()).getName());
     }
 }

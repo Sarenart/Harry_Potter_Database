@@ -28,9 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class CharacterListFragment extends Fragment {
-
-    private SharedViewModel sharedViewModel;
+public class CharacterListFragment extends BasicFragment {
 
     private FragmentCharacterListBinding fragmentCharacterListBinding;
 
@@ -48,16 +46,11 @@ public class CharacterListFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        sharedViewModel = new ViewModelProvider(requireActivity())
-                .get(SharedViewModel.class);
-
-        sharedViewModel.getCharactersByHouse(sharedViewModel.getChosenHouse().getValue())
+        getSharedViewModel().getCharactersByHouse(getSharedViewModel().getChosenHouse().getValue())
                 .observe(requireActivity(), (characterInfoList) -> {
-
                         characterRecyclerViewAdapter.setCharacterInfoArrayList((ArrayList<CharacterInfo>) characterInfoList);
-                        sharedViewModel.setDataInvalidated(false);
-
                 });
+
         Log.d("State", "OnViewCreated");
     }
 
@@ -66,9 +59,8 @@ public class CharacterListFragment extends Fragment {
                              Bundle savedInstanceState) {
         Log.d("State", "OnCreateView");
         fragmentCharacterListBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_character_list, container, false);
-        View view = fragmentCharacterListBinding.getRoot();
         updateCharacterList();
-        return view;
+        return fragmentCharacterListBinding.getRoot();
 
     }
 
@@ -76,9 +68,8 @@ public class CharacterListFragment extends Fragment {
     public void onDestroyView() {
         Log.d("State", "OnDestroy");
         super.onDestroyView();
-        sharedViewModel.getCharactersByHouse(sharedViewModel.getChosenHouse().getValue()).removeObservers(requireActivity());
+        getSharedViewModel().getCharactersByHouse(getSharedViewModel().getChosenHouse().getValue()).removeObservers(requireActivity());
         characterRecyclerViewAdapter.clearCharacterInfoArrayList();
-        //fragmentCharacterListBinding = null;
     }
 
     @Override
@@ -103,9 +94,8 @@ public class CharacterListFragment extends Fragment {
         characterRecyclerViewAdapter = new CharacterRecyclerViewAdapter();
 
         characterRecyclerView.setAdapter(characterRecyclerViewAdapter);
-        characterRecyclerViewAdapter.setOnItemClickListener((characterInfo) -> sharedViewModel.getChosenCharacter().setValue(characterInfo));
+        characterRecyclerViewAdapter.setOnItemClickListener((characterInfo) -> getSharedViewModel().getChosenCharacter().setValue(characterInfo));
 
     }
-
 
 }
