@@ -47,9 +47,7 @@ public class CharacterListFragment extends BasicFragment {
         super.onViewCreated(view, savedInstanceState);
 
         getSharedViewModel().getCharactersByHouse(getSharedViewModel().getChosenHouse().getValue())
-                .observe(requireActivity(), (characterInfoList) -> {
-                        characterRecyclerViewAdapter.setCharacterInfoArrayList((ArrayList<CharacterInfo>) characterInfoList);
-                });
+                .observe(requireActivity(), (characterInfoList) -> characterRecyclerViewAdapter.setCharacterInfoArrayList((ArrayList<CharacterInfo>) characterInfoList));
 
         Log.d("State", "OnViewCreated");
     }
@@ -59,7 +57,7 @@ public class CharacterListFragment extends BasicFragment {
                              Bundle savedInstanceState) {
         Log.d("State", "OnCreateView");
         fragmentCharacterListBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_character_list, container, false);
-        updateCharacterList();
+        setCharacterList();
         return fragmentCharacterListBinding.getRoot();
 
     }
@@ -85,7 +83,7 @@ public class CharacterListFragment extends BasicFragment {
 
     }
 
-    private void updateCharacterList(){
+    private void setCharacterList(){
 
         RecyclerView characterRecyclerView = fragmentCharacterListBinding.characterRecyclerView;
         characterRecyclerView.setLayoutManager(new GridLayoutManager(requireActivity(), 2));

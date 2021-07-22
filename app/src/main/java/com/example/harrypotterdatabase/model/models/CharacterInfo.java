@@ -16,13 +16,8 @@ import androidx.room.PrimaryKey;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-//@Generated("jsonschema2pojo")
 @Entity(tableName = "characterInfo_table")
 public class CharacterInfo extends BaseObservable  {
-
-    //@PrimaryKey(autoGenerate = true)
-    //private int id;
-
 
     @ColumnInfo(name="characterInfo_Name")
     @SerializedName("name")
@@ -107,17 +102,6 @@ public class CharacterInfo extends BaseObservable  {
     @SerializedName("image")
     @Expose
     private String image;
-
-
-   /* @Bindable
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }*/
-
 
     @Bindable
     public String getName() {
@@ -262,8 +246,6 @@ public class CharacterInfo extends BaseObservable  {
     public void setImage(String image) {
         this.image = image;
     }
-
-
 
 }
 

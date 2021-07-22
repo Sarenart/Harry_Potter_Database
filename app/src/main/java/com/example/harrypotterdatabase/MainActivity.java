@@ -53,46 +53,30 @@ public class MainActivity extends AppCompatActivity {
 
         appBarConfiguration =
                 new AppBarConfiguration.Builder(navController.getGraph()).build();
-        //Toolbar toolbar = findViewById(R.id.toolbar);
+
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
         CheckNetwork checkNetwork = new CheckNetwork(getApplicationContext(), fragmentManager);
         checkNetwork.registerNetworkCallback();
 
-        sharedViewModel.getChosenHouse().observe(this, new Observer<String>() {
-
-            @Override
-            public void onChanged(String s) {
-
-                sharedViewModel.updateCharactersByHouse(s);
-                NavDirections action = HousesFragmentDirections
-                        .actionHousesFragmentToCharacterListFragment();
-                navController.navigate(action);
-
-
-            }
+        sharedViewModel.getChosenHouse().observe(this, s -> {
+            sharedViewModel.updateCharactersByHouse(s);
+            NavDirections action = HousesFragmentDirections
+                    .actionHousesFragmentToCharacterListFragment();
+            navController.navigate(action);
         });
-        sharedViewModel.getChosenCharacter().observe(this, new Observer<CharacterInfo>() {
-            @Override
-            public void onChanged(CharacterInfo characterInfo) {
-
-                NavDirections action = CharacterListFragmentDirections
-                        .actionCharacterListFragmentToCharacterInfoFragment();
-                navController.navigate(action);
-
-
-            }
+        sharedViewModel.getChosenCharacter().observe(this, characterInfo -> {
+            NavDirections action = CharacterListFragmentDirections
+                    .actionCharacterListFragmentToCharacterInfoFragment();
+            navController.navigate(action);
         });
 
-        sharedViewModel.getChosenWand().observe(this, new Observer<Wand>() {
-            @Override
-            public void onChanged(Wand wand) {
+        sharedViewModel.getChosenWand().observe(this, wand -> {
 
-                NavDirections action = CharacterInfoFragmentDirections
-                        .actionCharacterInfoFragmentToWandInfoFragment();
-                navController.navigate(action);
+            NavDirections action = CharacterInfoFragmentDirections
+                    .actionCharacterInfoFragmentToWandInfoFragment();
+            navController.navigate(action);
 
-            }
         });
 
 

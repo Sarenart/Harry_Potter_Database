@@ -27,8 +27,6 @@ import java.net.HttpURLConnection;
 
 public class HousesFragment extends BasicFragment {
 
-    //private SharedViewModel sharedViewModel;
-
     private FragmentHousesBinding fragmentHousesBinding;
 
 

@@ -21,7 +21,6 @@ public class SharedViewModel extends AndroidViewModel {
 
     private final Repository repository;
 
-    //private LiveData<List<CharacterInfo>> charactersByHouse;
 
     private boolean isDataInvalidated;
 
@@ -60,6 +59,6 @@ public class SharedViewModel extends AndroidViewModel {
 
     public void updateCharactersByHouse(String house){
         repository.updateCharactersByHouseFromApi(house);
-    };
+    }
 
 }

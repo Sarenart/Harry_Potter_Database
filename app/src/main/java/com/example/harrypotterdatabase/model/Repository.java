@@ -50,14 +50,11 @@ public class Repository {
 
     public LiveData<List<CharacterInfo>> getCharactersList(String house){
 
-            //updateCharactersByHouseFromApi(house);
-        //else getCharactersByHouseFromDatabase(house);
-        //return mutableCharacterInfo;
         return hogwartsDatabase.getCharacterInfoDao().getAllByHouse(house);
     }
 
 
-    public void /*LiveData<List<CharacterInfo>>*/ updateCharactersByHouseFromApi(String house){
+    public void updateCharactersByHouseFromApi(String house){
 
         Call<List<CharacterInfo>> call = hogwartsService.getCharactersByHouse(house);
 
@@ -69,7 +66,6 @@ public class Repository {
                 if(characters != null){
 
                     characterInfoArrayList = (ArrayList<CharacterInfo>) characters;
-                    //mutableCharacterInfo.setValue(characters);
                     insertCharacterList(characterInfoArrayList);
 
                 }
@@ -84,7 +80,6 @@ public class Repository {
 
         });
 
-        //return mutableCharacterInfo;
     }
 
 
@@ -101,11 +96,5 @@ public class Repository {
         });
 
     }
-
-
-    public LiveData<List<CharacterInfo>> getCharactersByHouseFromDatabase(String house){
-        return hogwartsDatabase.getCharacterInfoDao().getAllByHouse(house);
-    }
-
 
 }
