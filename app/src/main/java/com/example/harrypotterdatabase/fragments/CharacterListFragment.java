@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -45,10 +46,28 @@ public class CharacterListFragment extends BasicFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        setCharacterList();
         getSharedViewModel().getCharactersByHouse(getSharedViewModel().getChosenHouse().getValue())
-                .observe(requireActivity(), (characterInfoList) -> characterRecyclerViewAdapter.setCharacterInfoArrayList((ArrayList<CharacterInfo>) characterInfoList));
+                .observe(requireActivity(), (characterInfoList) -> {
+                        if(characterInfoList !=null)
+                        characterRecyclerViewAdapter.setCharacterInfoArrayList((ArrayList<CharacterInfo>) characterInfoList);
+                });
 
+        fragmentCharacterListBinding.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (!newText.equals("")) {
+                    getSharedViewModel().filterCharacters(newText);
+                }
+                else getSharedViewModel().setOriginalList();
+                return false;
+            }
+        });
         Log.d("State", "OnViewCreated");
     }
 
@@ -57,17 +76,16 @@ public class CharacterListFragment extends BasicFragment {
                              Bundle savedInstanceState) {
         Log.d("State", "OnCreateView");
         fragmentCharacterListBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_character_list, container, false);
-        setCharacterList();
         return fragmentCharacterListBinding.getRoot();
-
     }
 
     @Override
     public void onDestroyView() {
-        Log.d("State", "OnDestroy");
+        Log.d("State", "OnDestroyView");
         super.onDestroyView();
         getSharedViewModel().getCharactersByHouse(getSharedViewModel().getChosenHouse().getValue()).removeObservers(requireActivity());
         characterRecyclerViewAdapter.clearCharacterInfoArrayList();
+        getSharedViewModel().removeObserversFromLiveData();
     }
 
     @Override

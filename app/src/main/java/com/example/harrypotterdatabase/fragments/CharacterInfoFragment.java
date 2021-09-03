@@ -1,12 +1,12 @@
 package com.example.harrypotterdatabase.fragments;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -62,6 +62,9 @@ public class CharacterInfoFragment extends BasicFragment {
 
         public void onShowWandButtonClicked(View view){
             CharacterInfoFragment.this.getSharedViewModel().getChosenWand().setValue(Objects.requireNonNull(CharacterInfoFragment.this.getSharedViewModel().getChosenCharacter().getValue()).getWand());
+        }
+        public void onUpdateButtonClicked(View view){
+            CharacterInfoFragment.this.getSharedViewModel().setIsCharacterRedacted(true);
         }
     }
 }

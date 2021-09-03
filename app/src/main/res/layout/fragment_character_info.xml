@@ -188,8 +188,19 @@
                                         android:textColor="@color/darkPrimary"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:layout_margin="4dp"
                                         android:onClick="@{clickHandlers::onShowWandButtonClicked}"
                                         android:text="@string/showWand"
+                                        android:textSize="16sp"
+                                        android:layout_gravity="center"/>
+
+                                    <Button
+                                        android:background="?android:attr/selectableItemBackground"
+                                        android:textColor="@color/darkPrimary"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:onClick="@{clickHandlers::onUpdateButtonClicked}"
+                                        android:text="@string/updateCharacter"
                                         android:textSize="16sp"
                                         android:layout_gravity="center"/>
 

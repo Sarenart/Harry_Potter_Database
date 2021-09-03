@@ -3,6 +3,8 @@ package com.example.harrypotterdatabase.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -14,7 +16,7 @@ import com.example.harrypotterdatabase.model.models.CharacterInfo;
 
 import java.util.ArrayList;
 
-public class CharacterRecyclerViewAdapter extends RecyclerView.Adapter<CharacterRecyclerViewAdapter.CharacterViewHolder> {
+public class CharacterRecyclerViewAdapter extends RecyclerView.Adapter<CharacterRecyclerViewAdapter.CharacterViewHolder> implements Filterable {
 
     private OnItemClickListener onItemClickListener;
     private ArrayList<CharacterInfo> characterInfoArrayList = new ArrayList<>();
@@ -38,6 +40,11 @@ public class CharacterRecyclerViewAdapter extends RecyclerView.Adapter<Character
     @Override
     public int getItemCount() {
         return characterInfoArrayList.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return null;
     }
 
 

@@ -32,7 +32,6 @@ public class Repository {
 
     private ArrayList<CharacterInfo> characterInfoArrayList = new ArrayList<>();
 
-    private final MutableLiveData <List<CharacterInfo>> mutableCharacterInfo = new MutableLiveData<>();
 
     public static Repository getInstance(Application application){
         if(instance == null){
@@ -65,7 +64,7 @@ public class Repository {
 
                 if(characters != null){
 
-                    characterInfoArrayList = (ArrayList<CharacterInfo>) characters;
+                    ArrayList<CharacterInfo> characterInfoArrayList = (ArrayList<CharacterInfo>) characters;
                     insertCharacterList(characterInfoArrayList);
 
                 }
@@ -92,6 +91,17 @@ public class Repository {
                 {
                     hogwartsDatabase.getCharacterInfoDao().insert(info);
                 }
+            service.shutdown();
+        });
+
+    }
+
+    public void updateCharacter(CharacterInfo characterInfo){
+
+        service = Executors.newSingleThreadExecutor();
+
+        service.execute(() -> {
+            hogwartsDatabase.getCharacterInfoDao().update(characterInfo);
             service.shutdown();
         });
 

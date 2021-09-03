@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/housesFragment">
 
@@ -30,6 +31,14 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim"
             app:popUpTo="@id/characterInfoFragment" />
+        <action
+            android:id="@+id/action_characterInfoFragment_to_characterUpdateFragment"
+            app:destination="@id/characterUpdateFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@anim/nav_default_enter_anim"
+            app:popExitAnim="@anim/nav_default_exit_anim"
+            app:popUpTo="@id/characterInfoFragment" />
     </fragment>
 
     <fragment
@@ -50,5 +59,10 @@
         android:id="@+id/wandInfoFragment"
         android:name="com.example.harrypotterdatabase.fragments.WandInfoFragment"
         android:label="@string/WandInfo" />
+    <fragment
+        android:id="@+id/characterUpdateFragment"
+        android:name="com.example.harrypotterdatabase.fragments.CharacterUpdateFragment"
+        android:label="fragment_character_update"
+        tools:layout="@layout/fragment_character_update" />
 
 </navigation>

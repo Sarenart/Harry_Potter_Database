@@ -21,6 +21,7 @@ import com.example.harrypotterdatabase.fragments.CharacterInfoFragment;
 import com.example.harrypotterdatabase.fragments.CharacterInfoFragmentDirections;
 import com.example.harrypotterdatabase.fragments.CharacterListFragment;
 import com.example.harrypotterdatabase.fragments.CharacterListFragmentDirections;
+import com.example.harrypotterdatabase.fragments.CharacterUpdateFragment;
 import com.example.harrypotterdatabase.fragments.HousesFragment;
 import com.example.harrypotterdatabase.fragments.HousesFragmentDirections;
 import com.example.harrypotterdatabase.fragments.WandInfoFragment;
@@ -77,6 +78,17 @@ public class MainActivity extends AppCompatActivity {
                     .actionCharacterInfoFragmentToWandInfoFragment();
             navController.navigate(action);
 
+        });
+        sharedViewModel.getIsCharacterRedacted().observe(this, aBoolean -> {
+            if(aBoolean) {
+                NavDirections action = CharacterInfoFragmentDirections
+                        .actionCharacterInfoFragmentToCharacterUpdateFragment();
+                navController.navigate(action);
+            }
+            else {
+
+                navController.popBackStack();
+            }
         });
 
 

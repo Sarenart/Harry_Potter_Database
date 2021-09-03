@@ -25,7 +25,7 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="notStated">NotStated</string>
-
+    
     <string name="wandWoodOwner">The wand of </string>
     <string name="showWand">Show wand info</string>
 
@@ -50,6 +50,5 @@
     <string name="WandInfo">Character\'s wand info</string>
     <string name="CharacterImage">Character\'s image</string>
     <string name="NetworkIssue">Network error. Switching to internal data (data may be unupdated).</string>
-    <string name="updateCharacter">Update Character</string>
 
 </resources>

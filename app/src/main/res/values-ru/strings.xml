@@ -42,4 +42,5 @@
     <string name="WandInfo">Палочка персонажа</string>
     <string name="CharacterImage">Фото персонажа</string>
     <string name="NetworkIssue">"Ошибка соединения. Приложение переведено на работу с внутренними данными (данные могут быть не обновлены). "</string>
+    <string name="updateCharacter">Обновить персонажа</string>
 </resources>
