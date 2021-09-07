@@ -103,6 +103,7 @@
 
                         <EditText
                             android:layout_width="wrap_content"
+                            android:minWidth="100dp"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
 
@@ -121,7 +122,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
-
+                            android:minWidth="100dp"
                             android:text='@={character.gender}'
                             android:textSize="16sp" />
 
@@ -137,7 +138,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
-
+                            android:minWidth="100dp"
                             android:text='@={character.house}'
                             android:textSize="16sp" />
 
@@ -155,7 +156,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
-
+                            android:minWidth="100dp"
                             android:text='@={character.dateOfBirth}'
                             android:textSize="16sp" />
 
@@ -171,7 +172,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
-
+                            android:minWidth="100dp"
                             android:text='@={character.ancestry}'
                             android:textSize="16sp" />
 
@@ -187,7 +188,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
-
+                            android:minWidth="100dp"
                             android:text='@={character.eyeColour}'
                             android:textSize="16sp" />
 
@@ -203,7 +204,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
-
+                            android:minWidth="100dp"
                             android:text='@={character.hairColour}'
                             android:textSize="16sp" />
 
@@ -219,7 +220,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
-
+                            android:minWidth="100dp"
                             android:text='@={character.patronus}'
                             android:textSize="16sp" />
 
@@ -235,7 +236,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
-
+                            android:minWidth="100dp"
                             android:text='@={character.actor}'
                             android:textSize="16sp" />
 
